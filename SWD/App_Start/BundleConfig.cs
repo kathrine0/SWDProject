@@ -24,8 +24,10 @@ namespace SWD
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/css/bootstrap.min.css",
+                      "~/Content/css/stylish-portfolio.css"));
+
+            bundles.Add(new StyleBundle("~/Content/font-awesome").Include("~/Content/font-awesome/css/font-awesome.min.css"));
         }
     }
 }
