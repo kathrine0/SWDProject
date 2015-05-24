@@ -1,0 +1,28 @@
+﻿import
+
+@{
+    ViewBag.Title = "Start";
+}
+
+@{
+    Html.RenderPartial("_FirstStepPartial");
+    Html.RenderPartial("_SecondStepPartial");
+    Html.RenderPartial("_ThirdStepPartial");
+}
+
+<script>
+    function goToStep(stepId) {
+        $(stepId).show();
+        scrollTo(stepId);
+    }
+
+    function scrollTo(elementId) {
+        var target = $(elementId);
+        if (target.length) {
+            $('html,body').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+            return false;
+        }
+    }
+</script>
