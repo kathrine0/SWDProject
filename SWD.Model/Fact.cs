@@ -15,10 +15,7 @@ namespace SWD.Model
             Expression = expression;
         }
 
-        public void Test()
-        { 
 
-        }
 
     }
 }

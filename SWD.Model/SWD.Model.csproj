@@ -43,6 +43,7 @@
     <Compile Include="Expression.cs" />
     <Compile Include="Fact.cs" />
     <Compile Include="FormulaElementary.cs" />
+    <Compile Include="Helpers\ParseHelper.cs" />
     <Compile Include="Operations.cs" />
     <Compile Include="PersonalFormulaElementary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

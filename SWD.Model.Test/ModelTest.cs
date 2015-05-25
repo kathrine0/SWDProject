@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SWD.Model.Test
@@ -17,9 +19,8 @@ namespace SWD.Model.Test
             FormulaElementary lubieCieplo = new FormulaElementary("4");
             FormulaElementary jadeDoRzymu = new FormulaElementary("5");
 
-            Expression expression = new Expression(lubieGory);        
-            expression = expression.AddRight(Operations.Or, lubieMorze);
-
+            Expression expression = new Expression(lubieGory, Operations.Or, lubieMorze);        
+            
             Expression express = new Expression(lubieChodzic, Operations.And, lubieCieplo);
 
             expression = expression.AddRight(Operations.And, express);
@@ -28,6 +29,14 @@ namespace SWD.Model.Test
             fact = new Fact(expression);
 
             Assert.IsNotNull(fact);
+
+        }
+
+        [TestMethod]
+        public void ParseTest()
+        {
+            var exp = Expression.Parse("(5˄(1˅2)˄4)>3");
+
 
         }
     }
