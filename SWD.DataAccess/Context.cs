@@ -15,6 +15,6 @@ namespace SWD.DataAccess
         {
 
         }
-        public DbSet<Destination> Blogs { get; set; }
+        public DbSet<Destination> Destinations { get; set; }
     }
 }
