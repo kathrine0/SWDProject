@@ -23,8 +23,8 @@ namespace SWD.Model.Test
             
             Expression express = new Expression(lubieChodzic, Operations.And, lubieCieplo);
 
-            expression = expression.AddRight(Operations.And, express);
-            expression = expression.AddRight(Operations.Implication, jadeDoRzymu);
+            expression.AddRight(Operations.And, express);
+            expression.AddRight(Operations.Implication, jadeDoRzymu);
             Console.Out.Write(expression.ToString());
             fact = new Fact(expression);
 
