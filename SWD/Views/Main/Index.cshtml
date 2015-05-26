@@ -1,28 +1,56 @@
-﻿import
-
-@{
+﻿@{
     ViewBag.Title = "Start";
 }
 
-@{
-    Html.RenderPartial("_FirstStepPartial");
-    Html.RenderPartial("_SecondStepPartial");
-    Html.RenderPartial("_ThirdStepPartial");
-}
+<!-- Header -->
+<header id="top" class="header">
+    <div class="text-vertical-center">
+        <h1>Wybierz wymarzone wakacje!</h1>
+        <h3>najlepsze propozycje wakacji w mieście</h3>
+        <br>
+        <a onclick="goToFirstStep()" class="btn btn-dark btn-lg">Spróbuj</a>
+    </div>
+</header>
 
-<script>
-    function goToStep(stepId) {
-        $(stepId).show();
-        scrollTo(stepId);
-    }
+<section id="firstStep" class="firstStep" style="display: none"></section>
 
-    function scrollTo(elementId) {
-        var target = $(elementId);
-        if (target.length) {
-            $('html,body').animate({
-                scrollTop: target.offset().top
-            }, 1000);
-            return false;
+    @*@{
+            Html.RenderPartial("_FirstStepPartial");
+            Html.RenderPartial("_SecondStepPartial");
+            Html.RenderPartial("_ThirdStepPartial");
+        }*@
+
+    <script>
+
+        function goToFirstStep()
+        {
+            var target = "#firstStep";
+            var url = '@Url.Action("FirstStep", "Main")';
+
+            goToStep(target, url);
         }
-    }
-</script>
+
+        function goToSecondStep() {
+            var target = "#secondStep";
+            var url = '@Url.Action("SecondStep", "Main")';
+
+            goToStep(target, url);
+        }
+
+        function goToStep(target, url) {
+            $(target).load(url, function () {
+                $(target).show();
+                scrollTo(target);
+            })
+        }
+
+        function scrollTo(elementId) {
+            var target = $(elementId);
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+                return false;
+            }
+        }
+    </script>

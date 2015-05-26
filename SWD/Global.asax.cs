@@ -16,6 +16,7 @@ namespace SWD
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutomapperConfig.Configure();
         }
     }
 }
