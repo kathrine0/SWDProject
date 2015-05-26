@@ -14,31 +14,22 @@ namespace SWD.Controllers
             return View();
         }
 
-        [HttpGet]
         public ActionResult FirstStep()
         {
             var form = new PersonalForm();
-            
-            return View(form);
+
+            return PartialView(form);
         }
 
-        [HttpPost]
-        public ActionResult FirstStep(PersonalForm personalForm)
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpGet]
         public ActionResult SecondStep()
         {
             throw new NotImplementedException();
         }
 
-        //[HttpPost]
-        //public ActionResult SecondStep()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public ActionResult ThirdStep()
+        {
+            throw new NotImplementedException();
+        }
 
         public ActionResult About()
         {

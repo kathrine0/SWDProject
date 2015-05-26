@@ -12,36 +12,43 @@
                 <form class="form-horizontal">
                     <div class="col-md-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label"})
-                            <div class="col-sm-10">
+                            @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label"})
+                            <div class="col-sm-8">
                                 @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Age, new { @class = "col-sm-2 control-label" })
-                            <div class="col-sm-10">
+                            @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
                                 @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Model.Userform.sex)), new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Interests, new { @class = "col-sm-2 control-label" })
-                            <div class="col-sm-10">
+                            @Html.LabelFor(model => model.Interests, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
                                 @Html.TextBoxFor(model => model.Interests, new { @class = "form-control" })
                             </div>
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Nationality, new { @class = "col-sm-2 control-label" })
-                            <div class="col-sm-10">
+                            @Html.LabelFor(model => model.Nationality, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
                                 @Html.TextBoxFor(model => model.Nationality, new { @class = "form-control" })
                             </div>
                         </div>
                     </div>
                 </form>
-
-                <a onclick="goToStep('#secondStep')" class="btn btn-dark btn-lg">Dalej</a>
+                <div class="row">
+                    <a onclick="goToStep('#secondStep')" class="btn btn-dark btn-lg">Dalej</a>
+                </div>
             </div>
         </div>
         <!-- /.row -->
