@@ -47,7 +47,7 @@ namespace SWD.Model
             Operations[] operationArray = ParseHelper.GetOperations(text, chars);
 
 
-            Expression expression = new Expression(abstractExpressions[0], operationArray[0], abstractExpressions[1]);
+            //Expression expression = new Expression(abstractExpressions[0], operationArray[0], abstractExpressions[1]);
 
             LeftExpression = abstractExpressions[0];
             Operation = operationArray[0];
@@ -56,30 +56,33 @@ namespace SWD.Model
             //Teraz trzeba dodać po prawej następne wyrazenia, ale nie możemy użyć AddRight (przynajmniej tak napisanego) bo jesteśmy w konstruktorze 
 
 
-            /*
             for (int i = 1; i < operationArray.Length; i++)
             {
-                expression.AddRight(operationArray[i], abstractExpressions[i+1]);
-            }*/
+                this.AddRight(operationArray[i], abstractExpressions[i+1]);
+            }
 
         }
 
-        public Expression AddRight(Operations operation, AbstractExpression addExpression)
+        public void AddRight(Operations operation, AbstractExpression addExpression)
         {
             Expression newExpression = new Expression();
-            newExpression.LeftExpression = this;
-            newExpression.Operation = operation;
-            newExpression.RightExpression = addExpression;
-            return newExpression;
+            newExpression.LeftExpression = this.LeftExpression;
+            newExpression.Operation = this.Operation;
+            newExpression.RightExpression = this.RightExpression;
+            this.LeftExpression = newExpression;
+            this.Operation = operation;
+            this.RightExpression = addExpression; 
         }
 
-        public Expression AddLeft(Operations operation, AbstractExpression addExpression)
+        public void AddLeft(Operations operation, AbstractExpression addExpression)
         {
             Expression newExpression = new Expression();
-            newExpression.LeftExpression = addExpression;
-            newExpression.Operation = operation;
-            newExpression.RightExpression = this;
-            return newExpression;
+            newExpression.LeftExpression = this.LeftExpression;
+            newExpression.Operation = this.Operation;
+            newExpression.RightExpression = this.RightExpression;
+            this.LeftExpression = addExpression;
+            this.Operation = operation;
+            this.RightExpression = newExpression;
         }
 
         public override string ToString()
