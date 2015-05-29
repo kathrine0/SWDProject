@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace SWD.Model
 {
     public abstract class AbstractExpression
     {
+
+        public bool Negation { get; set; }
+
         protected AbstractExpression()
         { 
         
         }
+
+        public abstract string ToString(bool symbolic = false);
+        
     }
 }

@@ -49,8 +49,13 @@ namespace SWD.Model.Helpers
             }
             else
             {
-                int key = Int32.Parse(value.Replace("e", ""));
+                int key = 0;
+                if (value.Contains("!e"))
+                    key = Int32.Parse(value.Replace("!e", ""));
+                else
+                    key = Int32.Parse(value.Replace("e", ""));
                 expression  = dictionary[key];
+
             }
             return expression;
         }

@@ -33,11 +33,32 @@ namespace SWD.Model.Test
         }
 
         [TestMethod]
-        public void ParseTest()
+        public void ParseTest1()
         {
             var exp = Expression.Parse("(5˄(1˅2)˄4)>3");
+            Assert.Equals(exp.ToString(true), "(((5 ˄ (1 ˅ 2)) ˄ 4) > 3)");
+        }
 
+        [TestMethod]
+        public void ParseTest2()
+        {
+            var exp = Expression.Parse("!(1˄2˅(1˄3))˄4");
+            Console.Out.WriteLine(exp.ToString(true));
+            
+        }
 
+        [TestMethod]
+        public void ParseTest3()
+        {
+            var exp = Expression.Parse("!(1˄2)");
+            Console.Out.WriteLine(exp.ToString(true));
+        }
+
+        [TestMethod]
+        public void ParseTest4()
+        {
+            var exp = Expression.Parse("(1˄2)˄!(1˄2)");
+            Console.Out.WriteLine(exp.ToString(true));
         }
     }
 }

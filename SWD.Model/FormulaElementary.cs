@@ -8,16 +8,22 @@ namespace SWD.Model
 {
     public class FormulaElementary : AbstractExpression
     {
+        public int ID { get; set; }
         public string Name { get; set; }
 
         public FormulaElementary(string name)
         {
-            Name = name;
+            if (name.Contains('!'))
+            {
+                Negation = true;
+            }
+            Name = name.Replace("!","");
         }
 
-        public override string ToString()
+        public override string ToString(bool symbolic = false)
         {
-            return Name;
+            string result = Negation ? "!" : ""; 
+            return  result + Name;
         }
     }
 }
