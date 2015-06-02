@@ -1,4 +1,5 @@
-﻿using SWD.Model.Userform;
+﻿using SWD.Helpers;
+using SWD.Model.Userform;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,15 +30,16 @@ namespace SWD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    return PartialView("SecondStep");
+                    //TODO: logic here
+                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("SecondStep", form, ControllerContext));
                 }
             }
-            catch (DataException ex)
+            catch (DataException)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
 
-            return PartialView(form);
+           return JsonResponse.ErrorResponse(ViewHelper.RenderPartialToString("FirstStep", form, ControllerContext));
         }
 
         public ActionResult SecondStep()

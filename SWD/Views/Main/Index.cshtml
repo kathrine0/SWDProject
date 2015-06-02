@@ -13,12 +13,7 @@
 </header>
 
 <section id="firstStep" class="firstStep" style="display: none"></section>
-
-    @*@{
-            Html.RenderPartial("_FirstStepPartial");
-            Html.RenderPartial("_SecondStepPartial");
-            Html.RenderPartial("_ThirdStepPartial");
-        }*@
+<section id="secondStep" class="secondStep" style="display: none"></section>
 
     <script>      
 
@@ -36,6 +31,12 @@
                 $(target).show();
                 scrollTo(target);
             })
+        }
+
+        function goToStepHtml(target, html) {
+            $(target).html(html);
+            $(target).show();
+            scrollTo(target);
         }
 
         function scrollTo(elementId) {
