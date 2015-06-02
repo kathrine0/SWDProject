@@ -48,7 +48,9 @@ namespace SWD.Model.Helpers
             if (!value.Contains('e'))
             {
                 var repo = new Repository();
+                bool negation = value.Contains('!') ? true : false;
                 expression = repo.GetFormulaElementaryById(Int32.Parse(value.Replace("!","")));
+                expression.Negation = negation;
             }
             else
             {
