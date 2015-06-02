@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using SWD.DataAccess;
 
 namespace SWD.Model.Helpers
 {
@@ -41,11 +42,13 @@ namespace SWD.Model.Helpers
 
         public static AbstractExpression GetExpression(string value, Dictionary<int, Expression> dictionary)
         {
+            
             AbstractExpression expression;
 
             if (!value.Contains('e'))
             {
-                expression = new FormulaElementary(value);
+                var repo = new Repository();
+                expression = repo.GetFormulaElementaryById(Int32.Parse(value.Replace("!","")));
             }
             else
             {

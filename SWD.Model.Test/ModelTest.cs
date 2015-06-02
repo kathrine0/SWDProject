@@ -65,15 +65,9 @@ namespace SWD.Model.Test
         [TestMethod]
         public void Test1()
         {
-            FormulaElementary a1 = new FormulaElementary(1, "Prędkość <=130 km/h", false, FormulaElementaryType.Enter);
-            FormulaElementary a2 = new FormulaElementary(2, "kierowca otrzymuje mandat", false, FormulaElementaryType.Exit);
-            FormulaElementary a3 = new FormulaElementary(3, "Prędkość >180 km/h", false, FormulaElementaryType.Enter);
-            FormulaElementary a4 = new FormulaElementary(4, "Występuje niebezpieczeństwo", false, FormulaElementaryType.Other);
-            FormulaElementary a5 = new FormulaElementary(5, "moc silnika jest poniżej 70 KM", true, FormulaElementaryType.Enter);
-
-            Fact f1 = new Fact(1, Expression.Parse("1˅2"));
-            Fact f2 = new Fact(2, Expression.Parse("3>4"));
-            Fact f3 = new Fact(3, Expression.Parse("5>!3"));
+            Fact f1 = new Fact("1˅2");
+            Fact f2 = new Fact("3>4");
+            Fact f3 = new Fact("5>!3");
 
             var exp = Expression.Parse("5>!3");
             Console.Out.WriteLine(exp.ToString(true));

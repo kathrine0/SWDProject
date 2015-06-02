@@ -24,16 +24,17 @@
                 new FormulaElementary(5, "moc silnika jest poniżej 70 KM", true, FormulaElementaryType.Enter)
             };
 
-            context.FormulaElementaries.AddOrUpdate(p => p.Name, elementaries.ToArray());
+            context.FormulaElementaries.AddOrUpdate(elementaries.ToArray());
+            context.SaveChanges();
 
             var facts = new List<Fact>() {
-                new Fact(expression: Expression.Parse("1˅2")),
-                new Fact(expression: Expression.Parse("3>4")),
-                new Fact(expression: Expression.Parse("5>!3"))
+                new Fact{ ExpressionString = "1˅2"},
+                new Fact{ ExpressionString = "3>4"},
+                new Fact{ ExpressionString = "5>!3"}
             };
 
             context.Facts.AddOrUpdate(facts.ToArray());
-            
+            context.SaveChanges();
         }
     }
 }
