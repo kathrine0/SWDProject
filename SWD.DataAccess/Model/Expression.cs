@@ -11,6 +11,7 @@ namespace SWD.Model
 {
     public class Expression : AbstractExpression
     {
+
         public AbstractExpression LeftExpression { get; set;}
         public AbstractExpression RightExpression { get; set; }
         public Operations Operation { get; set; }

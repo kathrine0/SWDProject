@@ -28,6 +28,13 @@ namespace SWD.Model
             this.Name = name;
         }
 
+        public FormulaElementary(string name, bool personal, FormulaElementaryType type)
+        {
+            Name = name;
+            Personal = personal;
+            Type = type;
+        }
+
         public FormulaElementary(int id, string name, bool personal, FormulaElementaryType type)
         {
             Id = id;
@@ -39,7 +46,7 @@ namespace SWD.Model
         public override string ToString(bool symbolic = false)
         {
             string result = Negation ? "!" : "";
-            return result + Name;
+            return result + Id;
         }
     }
 }

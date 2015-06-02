@@ -303,10 +303,6 @@
       <Project>{21bc7e63-8447-43cd-9f7d-08a1d9c94476}</Project>
       <Name>SWD.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SWD.Model\SWD.Model.csproj">
-      <Project>{8268ff87-d5cf-4678-9cac-39288ddd1ec1}</Project>
-      <Name>SWD.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
