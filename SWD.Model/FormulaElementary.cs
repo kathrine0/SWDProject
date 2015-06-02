@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using SWD.Model.Userform;
 
 namespace SWD.Model
 {
@@ -10,20 +7,36 @@ namespace SWD.Model
     {
         public int ID { get; set; }
         public string Name { get; set; }
+        public bool Personal { get; set; }
+        public FormulaElementaryType Type { get; set; }
 
-        public FormulaElementary(string name)
+        public FormulaElementary(string text)
         {
-            if (name.Contains('!'))
+            if (text.Contains('!'))
             {
                 Negation = true;
             }
-            Name = name.Replace("!","");
+            Name = text.Replace("!", "");
+        }
+
+        public FormulaElementary(int Id, string name)
+        {
+            ID = Id;
+            Name = name;
+        }
+
+        public FormulaElementary(int Id, string name, bool personal, FormulaElementaryType type)
+        {
+            ID = Id;
+            Name = name;
+            Personal = personal;
+            Type = type;
         }
 
         public override string ToString(bool symbolic = false)
         {
-            string result = Negation ? "!" : ""; 
-            return  result + Name;
+            string result = Negation ? "!" : "";
+            return result + Name;
         }
     }
 }
