@@ -20,7 +20,7 @@
             Html.RenderPartial("_ThirdStepPartial");
         }*@
 
-    <script>
+    <script>      
 
         function goToFirstStep()
         {
@@ -28,13 +28,7 @@
             var url = '@Url.Action("FirstStep", "Main")';
 
             goToStep(target, url);
-        }
 
-        function goToSecondStep() {
-            var target = "#secondStep";
-            var url = '@Url.Action("SecondStep", "Main")';
-
-            goToStep(target, url);
         }
 
         function goToStep(target, url) {

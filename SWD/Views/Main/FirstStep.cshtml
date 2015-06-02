@@ -4,54 +4,71 @@
     ViewBag.Title = "Dane osobiste";
 }
 
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Krok pierwszy - powiedz nam coś o sobie</h2>
-                <p class="lead">Abyśmy mogli lepiej Ci doradzić :)</p>
-                <form class="form-horizontal">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label"})
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
-                            <div class="col-sm-8">
-                                @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Model.Userform.sex)), new { @class = "form-control" })
-                            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Krok pierwszy - powiedz nam coś o sobie</h2>
+            <p class="lead">Abyśmy mogli lepiej Ci doradzić :)</p>
+            @using(Html.BeginForm("FirstStep", "Main", FormMethod.Post, new {@class = "form-horizontal", id = "firstStepForm"}))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
                         </div>
                     </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Interests, new { @class = "col-sm-4 control-label" })
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.Interests, new { @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Nationality, new { @class = "col-sm-4 control-label" })
-                            <div class="col-sm-8">
-                                @Html.TextBoxFor(model => model.Nationality, new { @class = "form-control" })
-                            </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
                         </div>
                     </div>
-                </form>
-                <div class="row">
-                    <a onclick="goToStep('#secondStep')" class="btn btn-dark btn-lg">Dalej</a>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Model.Userform.sex)), new { @class = "form-control" })
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Interests, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(model => model.Interests, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nationality, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(model => model.Nationality, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <a id="submitFirstStep" class="btn btn-dark btn-lg">Dalej</a>
             </div>
         </div>
-        <!-- /.row -->
     </div>
-    <!-- /.container -->
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+
+<script>
+    $("#submitFirstStep").on("click", function () {
+        $('#firstStepForm').trigger("submit");
+    });
+
+    $('#firstStepForm').on("submit", function () {
+        // submit the form 
+        $(this).ajaxSubmit(function (data) {
+            console.log(data);
+        });
+
+        return false;
+    });
+</script>
 
