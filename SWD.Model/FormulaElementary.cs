@@ -5,10 +5,13 @@ namespace SWD.Model
 {
     public class FormulaElementary : AbstractExpression
     {
-        public int ID { get; set; }
         public string Name { get; set; }
         public bool Personal { get; set; }
         public FormulaElementaryType Type { get; set; }
+
+        public FormulaElementary()
+        {
+        }
 
         public FormulaElementary(string text)
         {
@@ -19,15 +22,15 @@ namespace SWD.Model
             Name = text.Replace("!", "");
         }
 
-        public FormulaElementary(int Id, string name)
+        public FormulaElementary(int id, string name)
         {
-            ID = Id;
-            Name = name;
+            this.Id = id;
+            this.Name = name;
         }
 
-        public FormulaElementary(int Id, string name, bool personal, FormulaElementaryType type)
+        public FormulaElementary(int id, string name, bool personal, FormulaElementaryType type)
         {
-            ID = Id;
+            Id = id;
             Name = name;
             Personal = personal;
             Type = type;

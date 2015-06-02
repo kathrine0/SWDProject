@@ -11,6 +11,5 @@ namespace SWD.Model
         Enter,
         Exit,
         Other
-
     }
 }

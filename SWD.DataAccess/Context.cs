@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWD.DataAccess
 {
-    class Context : DbContext
+    public class Context : DbContext
     {
         public Context()
             : base("DefaultConnection")

@@ -11,6 +11,10 @@ namespace SWD.Model
         public int ID { get; set; }
         public Expression Expression { get; set; }
 
+        public Fact()
+        {
+        }
+
         public Fact(Expression expression)
         {
             Expression = expression;
