@@ -1,6 +1,8 @@
-namespace SWD.DataAccess.Migrations
+﻿namespace SWD.DataAccess.Migrations
 {
+    using SWD.Model;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,18 +16,24 @@ namespace SWD.DataAccess.Migrations
 
         protected override void Seed(SWD.DataAccess.Context context)
         {
-            //  This method will be called after migrating to the latest version.
+            var elementaries = new List<FormulaElementary>() { 
+                new FormulaElementary(1, "Prędkość <=130 km/h", false, FormulaElementaryType.Enter),
+                new FormulaElementary(2, "kierowca otrzymuje mandat", false, FormulaElementaryType.Exit),
+                new FormulaElementary(3, "Prędkość >180 km/h", false, FormulaElementaryType.Enter),
+                new FormulaElementary(4, "Występuje niebezpieczeństwo", false, FormulaElementaryType.Other),
+                new FormulaElementary(5, "moc silnika jest poniżej 70 KM", true, FormulaElementaryType.Enter)
+            };
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.FormulaElementaries.AddOrUpdate(p => p.Name, elementaries.ToArray());
+
+            var facts = new List<Fact>() {
+                new Fact(expression: Expression.Parse("1˅2")),
+                new Fact(expression: Expression.Parse("3>4")),
+                new Fact(expression: Expression.Parse("5>!3"))
+            };
+
+            context.Facts.AddOrUpdate(facts.ToArray());
+            
         }
     }
 }
