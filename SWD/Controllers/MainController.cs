@@ -8,6 +8,7 @@ using SWD.DataAccess;
 using SWD.DataAccess.Algoritm;
 using SWD.DataAccess.Model;
 using SWD.Model;
+using System.Collections.Generic;
 
 namespace SWD.Controllers
 {
@@ -25,9 +26,20 @@ namespace SWD.Controllers
             var repo = new Repository();
             var facts = repo.GetFacts();
 
-            var input = new Fact("!1^!3");
+            var input = new Fact("3^16");
 
-            var result = Algoritm.Run(facts, input);
+            var dictionary = new Dictionary<int, bool>
+            {
+                {1, true},
+                {6, true},
+                {7, true},
+                {8, true},
+                {9, false},
+                {10, false},
+                {11, false}
+            };
+
+            var result = Algoritm.Run(facts, input, dictionary);
             return View(new StringResult{Result= result});
         }
 

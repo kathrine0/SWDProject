@@ -4,5 +4,11 @@
 }
 
 <h2>TestAlgoritm</h2>
-<p>@Model.Result</p>
+@{ var results = @Model.Result.Split('v'); }
+
+@foreach (var result in results)
+{
+    @result
+    <br/>
+}
 

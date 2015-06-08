@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using SWD.Model;
 
 namespace SWD.DataAccess.Algoritm
 {
     public class Algoritm
     {
-        public static string Run(Fact[] facts, Fact input)
+        public static string Run(Fact[] facts, Fact input, Dictionary<int, bool> constansFormulaElementary )
         {
             var list = new List<string>();
             var repo = new Repository();
-            var formulaElementaries = repo.GetFormulaElementaries();
+            var formulaElementaries = repo.GetFormulaElementaries().Where(x => !x.Personal).ToArray();
             var formuliesExit = formulaElementaries.Where(x => x.Type == FormulaElementaryType.Exit);
             for (var i = 0; i < Math.Pow(2, formulaElementaries.Length); i++)
             {
-                var dictionary = GenerateValues(formulaElementaries, i);
+                var dictionary = GenerateValues(formulaElementaries, i, constansFormulaElementary);
 
                 var factResult = true;
                 foreach (var fact in facts)
@@ -47,7 +48,9 @@ namespace SWD.DataAccess.Algoritm
                 res += item + "v";
             }
 
-            return res.Substring(0, res.Length - 1);
+            if (res.Length > 0)
+                return res.Substring(0, res.Length - 1);
+            return "";
         }
 
         private static bool CalculateFact(Dictionary<int, bool> formulaElementariesValue, Fact fact )
@@ -65,7 +68,7 @@ namespace SWD.DataAccess.Algoritm
             return 1;
         }
 
-        private static Dictionary<int, bool> GenerateValues(FormulaElementary[] formulaElementaries, int value)
+        private static Dictionary<int, bool> GenerateValues(FormulaElementary[] formulaElementaries, int value, Dictionary<int, bool> constFormulaElementary)
         {
             var dictionary = new Dictionary<int, bool>();
 
@@ -79,8 +82,12 @@ namespace SWD.DataAccess.Algoritm
                 var bit = GetMaxBit(value);
                 dictionary[formulaElementaries[bit-1].Id] = true;
                 value = value - (int)Math.Pow(2, bit - 1);
-            } 
+            }
 
+            foreach (var item in constFormulaElementary)
+            {
+                dictionary.Add(item.Key, item.Value);
+            }
 
             return dictionary;
         }
