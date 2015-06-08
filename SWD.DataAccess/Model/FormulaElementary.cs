@@ -10,6 +10,8 @@ namespace SWD.Model
         public string Name { get; set; }
         public bool Personal { get; set; }
         public FormulaElementaryType Type { get; set; }
+        public string Value { get; set; }
+        public string Connective { get; set; }
 
         public FormulaElementary()
         {
@@ -21,6 +23,8 @@ namespace SWD.Model
             Personal = formula.Personal;
             Type = formula.Type;
             Id = formula.Id;
+            Value = formula.Value;
+            Connective = formula.Value;
         }
 
         public FormulaElementary(string text)
@@ -51,6 +55,16 @@ namespace SWD.Model
             Name = name;
             Personal = personal;
             Type = type;
+        }
+
+        public FormulaElementary(int id, string name, string connective, string value, bool personal, FormulaElementaryType type)
+        {
+            Id = id;
+            Name = name;
+            Personal = personal;
+            Type = type;
+            Connective = connective;
+            Value = value;
         }
 
         public override string ToString(bool symbolic = false)
