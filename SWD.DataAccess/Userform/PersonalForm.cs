@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SWD.Model.Userform
 {
-    public enum sex { Female, Male }
+    public enum sex { Kobieta, Mezczyzna }
     
     public class PersonalForm
     {
