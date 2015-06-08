@@ -11,6 +11,7 @@ namespace SWD.Model.Userform
     
     public class PersonalForm
     {
+        [Required]
         [Display(Name = "Podaj swoje imię")]
         public string Name { get; set; }
 
