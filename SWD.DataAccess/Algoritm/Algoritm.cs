@@ -11,10 +11,11 @@ namespace SWD.DataAccess.Algoritm
         {
             var list = new List<string>();
             var repo = new Repository();
-            var formuliesExit = repo.GetFormulaElementariesExit();
-            for (var i = 0; i < Math.Pow(2, GetFormulaCount()); i++)
+            var formulaElementaries = repo.GetFormulaElementaries();
+            var formuliesExit = formulaElementaries.Where(x => x.Type == FormulaElementaryType.Exit);
+            for (var i = 0; i < Math.Pow(2, formulaElementaries.Length); i++)
             {
-                var dictionary = GenerateValues(i);
+                var dictionary = GenerateValues(formulaElementaries, i);
 
                 var factResult = true;
                 foreach (var fact in facts)
@@ -43,7 +44,7 @@ namespace SWD.DataAccess.Algoritm
             list = list.Distinct().ToList();
             foreach (var item in list)
             {
-                res += item + "˅";
+                res += item + "v";
             }
 
             return res.Substring(0, res.Length - 1);
@@ -52,11 +53,6 @@ namespace SWD.DataAccess.Algoritm
         private static bool CalculateFact(Dictionary<int, bool> formulaElementariesValue, Fact fact )
         {
             return fact.Expression.Calculate(formulaElementariesValue);
-        }
-
-        private static int GetFormulaCount()
-        {
-            return 5;
         }
 
         private static int GetMaxBit(int number)
@@ -69,19 +65,19 @@ namespace SWD.DataAccess.Algoritm
             return 1;
         }
 
-        private static Dictionary<int, bool> GenerateValues(int value)
+        private static Dictionary<int, bool> GenerateValues(FormulaElementary[] formulaElementaries, int value)
         {
             var dictionary = new Dictionary<int, bool>();
 
-            for (var i = 1; i <= GetFormulaCount(); i++)
+            for (var i = 1; i <= formulaElementaries.Length; i++)
             {
-                dictionary.Add(i, false);
+                dictionary.Add(formulaElementaries[i-1].Id, false);
             }
 
             while (value != 0)
             {
                 var bit = GetMaxBit(value);
-                dictionary[bit] = true;
+                dictionary[formulaElementaries[bit-1].Id] = true;
                 value = value - (int)Math.Pow(2, bit - 1);
             } 
 

@@ -13,6 +13,11 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.FirstOrDefault(x => x.Id == id);
         }
 
+        public FormulaElementary[] GetFormulaElementaries()
+        {
+            return db.FormulaElementaries.ToArray();
+        }
+
         public FormulaElementary[] GetFormulaElementariesExit()
         {
             return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Exit).ToArray();

@@ -25,7 +25,7 @@ namespace SWD.Controllers
             var repo = new Repository();
             var facts = repo.GetFacts();
 
-            var input = new Fact("!1˄!3");
+            var input = new Fact("!1^!3");
 
             var result = Algoritm.Run(facts, input);
             return View(new StringResult{Result= result});

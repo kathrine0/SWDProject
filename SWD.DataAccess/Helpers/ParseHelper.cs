@@ -20,8 +20,8 @@ namespace SWD.Model.Helpers
         {
             switch (op)
             {
-                case '˅': return Operations.Or;
-                case '˄': return Operations.And;
+                case 'v': return Operations.Or;
+                case '^': return Operations.And;
                 case '>': return Operations.Implication;
                 default: throw  new Exception("Bad Operator");
             }

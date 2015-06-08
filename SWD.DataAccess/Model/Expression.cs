@@ -36,7 +36,7 @@ namespace SWD.Model
         public Expression(string text, Dictionary<int, Expression> dictionary, bool negative = false)
         {
             this.Negation = negative;
-            char[] chars = {'˅', '˄', '>'};
+            char[] chars = {'v', '^', '>'};
             string[] array = text.Split(chars);
 
             AbstractExpression[] abstractExpressions = ParseHelper.GetExpressions(array, dictionary);
@@ -122,7 +122,7 @@ namespace SWD.Model
         {
             string result = string.Empty;
             string[] pisemnie = {" oraz ", " lub ", " to "};
-            string[] symbolicznie = {" ˄ ", " ˅ ", " > "};
+            string[] symbolicznie = {" ^ ", " v ", " > "};
             string[] currentSymbols = symbolic ? symbolicznie : pisemnie;
 
 
