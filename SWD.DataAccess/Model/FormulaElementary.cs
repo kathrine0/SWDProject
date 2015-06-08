@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using SWD.Model.Userform;
 
 namespace SWD.Model
@@ -11,6 +13,14 @@ namespace SWD.Model
 
         public FormulaElementary()
         {
+        }
+
+        public FormulaElementary(FormulaElementary formula)
+        {
+            Name = formula.Name;
+            Personal = formula.Personal;
+            Type = formula.Type;
+            Id = formula.Id;
         }
 
         public FormulaElementary(string text)
@@ -47,6 +57,14 @@ namespace SWD.Model
         {
             string result = Negation ? "!" : "";
             return result + Id;
+        }
+
+        public override bool Calculate(Dictionary<int, bool> formulaElementariesValue)
+        {
+            var result = formulaElementariesValue[Id];
+            if (Negation)
+                result = !result;
+            return result;
         }
     }
 }

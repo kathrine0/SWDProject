@@ -1,10 +1,12 @@
 ﻿using SWD.Model.Userform;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
+using System.ServiceModel.PeerResolvers;
 using System.Web.Mvc;
+using SWD.DataAccess;
+using SWD.DataAccess.Algoritm;
+using SWD.DataAccess.Model;
+using SWD.Model;
 
 namespace SWD.Controllers
 {
@@ -12,7 +14,20 @@ namespace SWD.Controllers
     {
         public ActionResult Index()
         {
+
+
             return View();
+        }
+
+        public ActionResult TestAlgoritm()
+        {
+            var repo = new Repository();
+            var facts = repo.GetFacts();
+
+            var input = new Fact("!1˄!3");
+
+            var result = Algoritm.Run(facts, input);
+            return View(new StringResult{Result= result});
         }
 
         public ActionResult FirstStep()

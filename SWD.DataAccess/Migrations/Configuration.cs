@@ -20,8 +20,8 @@
                 new FormulaElementary(1, "Prędkość <=130 km/h", false, FormulaElementaryType.Enter),
                 new FormulaElementary(2, "kierowca otrzymuje mandat", false, FormulaElementaryType.Exit),
                 new FormulaElementary(3, "Prędkość >180 km/h", false, FormulaElementaryType.Enter),
-                new FormulaElementary(4, "Występuje niebezpieczeństwo", false, FormulaElementaryType.Other),
-                new FormulaElementary(5, "moc silnika jest poniżej 70 KM", true, FormulaElementaryType.Enter)
+                new FormulaElementary(4, "Występuje niebezpieczeństwo", false, FormulaElementaryType.Exit),
+                new FormulaElementary(5, "moc silnika jest poniżej 70 KM", true, FormulaElementaryType.Exit)
             };
 
             context.FormulaElementaries.AddOrUpdate(elementaries.ToArray());

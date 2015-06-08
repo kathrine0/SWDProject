@@ -48,9 +48,11 @@ namespace SWD.Model.Helpers
             if (!value.Contains('e'))
             {
                 var repo = new Repository();
-                bool negation = value.Contains('!') ? true : false;
-                expression = repo.GetFormulaElementaryById(Int32.Parse(value.Replace("!","")));
-                expression.Negation = negation;
+                bool negation = value.Contains('!');
+                expression = new FormulaElementary(repo.GetFormulaElementaryById(Int32.Parse(value.Replace("!", ""))))
+                {
+                    Negation = negation
+                };
             }
             else
             {
@@ -67,13 +69,7 @@ namespace SWD.Model.Helpers
 
         public static AbstractExpression[] GetExpressions(string[] values, Dictionary<int, Expression> dictionary)
         {
-            IList<AbstractExpression> result = new List<AbstractExpression>();
-
-            foreach (var value in values)
-            {
-                result.Add(GetExpression(value, dictionary));
-            }
-            return result.ToArray();
+            return values.Select(value => GetExpression(value, dictionary)).ToArray();
         }
 
     }

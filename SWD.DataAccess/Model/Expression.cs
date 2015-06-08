@@ -95,6 +95,29 @@ namespace SWD.Model
             this.RightExpression = newExpression;
         }
 
+        public override bool Calculate(Dictionary<int, bool> formulaElementariesValue)
+        {
+            bool result = false;
+            switch (Operation)
+            {
+                case Operations.And:
+                    result = LeftExpression.Calculate(formulaElementariesValue) && RightExpression.Calculate(formulaElementariesValue); break;
+                case Operations.Or:
+                    result = LeftExpression.Calculate(formulaElementariesValue) || RightExpression.Calculate(formulaElementariesValue); break;
+                case Operations.Implication:
+                {
+                    result = !(LeftExpression.Calculate(formulaElementariesValue) && !RightExpression.Calculate(formulaElementariesValue));
+
+                } break;
+                default:
+                    new Exception("Błędna operacja");
+                    break;
+            }
+            if (Negation)
+                result = !result;
+            return result;
+        }
+
         public override string ToString(bool symbolic = false)
         {
             string result = string.Empty;
