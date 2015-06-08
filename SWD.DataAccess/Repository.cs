@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using SWD.Model;
+using System.Collections.Generic;
 
 namespace SWD.DataAccess
 {
@@ -21,5 +22,15 @@ namespace SWD.DataAccess
         {
             return db.Facts.ToArray();
         }
+
+        public List<string> GetPersonalEnterFormulasNames()
+        {
+            return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Enter)
+                .Select(q => q.Name)
+                .Distinct()
+                .ToList();
+        }
+
+        
     }
 }
