@@ -36,6 +36,11 @@ namespace SWD.DataAccess
                 .ToList();
         }
 
+        public IQueryable<FormulaElementary> GetFormulasByName(string name)
+        {
+            return db.FormulaElementaries.Where(q => q.Name == name);
+        }
+
         
     }
 }
