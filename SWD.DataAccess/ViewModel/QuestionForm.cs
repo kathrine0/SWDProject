@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWD.Models
+namespace SWD.DataAccess.ViewModel
 {
     public class QuestionForm
     {

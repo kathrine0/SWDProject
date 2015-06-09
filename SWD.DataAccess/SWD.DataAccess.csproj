@@ -59,6 +59,8 @@
     <Compile Include="Model\FormulaElementaryType.cs" />
     <Compile Include="Model\Operations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\PersonalForm.cs" />
+    <Compile Include="ViewModel\QuestionForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

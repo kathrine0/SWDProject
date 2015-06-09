@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using SWD.Models;
 using System.Web.Caching;
 using System.Web;
+using SWD.DataAccess.ViewModel;
 
 namespace SWD.Controllers
 {
