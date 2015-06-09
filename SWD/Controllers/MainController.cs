@@ -9,6 +9,8 @@ using SWD.DataAccess.Algoritm;
 using SWD.DataAccess.Model;
 using SWD.Model;
 using System.Collections.Generic;
+using System.Linq;
+using SWD.DataAccess.Helpers;
 
 namespace SWD.Controllers
 {
@@ -16,31 +18,38 @@ namespace SWD.Controllers
     {
         public ActionResult Index()
         {
-
-
             return View();
         }
 
-        public ActionResult TestAlgoritm()
+        public ActionResult TestAlgoritm(StringResult model)
         {
             var repo = new Repository();
             var facts = repo.GetFacts();
-
-            var input = new Fact("3^16");
-
-            var dictionary = new Dictionary<int, bool>
+            var res = "";
+            if (model.Input != null)
             {
-                {1, true},
-                {6, true},
-                {7, true},
-                {8, true},
-                {9, false},
-                {10, false},
-                {11, false}
-            };
+                //var input = new Fact("!2^3^16");
+                var input = new Fact(model.Input);
 
-            var result = Algoritm.Run(facts, input, dictionary);
-            return View(new StringResult{Result= result});
+                var dictionary = new Dictionary<int, bool>
+                {
+                    {1, true},
+                    {6, true},
+                    {7, true},
+                    {8, true},
+                    {9, false},
+                    {10, false},
+                    {11, false}
+                };
+
+                var result = Algoritm.Run(facts, input, dictionary);
+
+
+                res = AlgoritmHelper.GetTheBest(result);
+            }
+
+
+            return View(new StringResult{Result= res});
         }
 
         public ActionResult FirstStep()

@@ -50,6 +50,7 @@
     <Compile Include="Context.cs" />
     <Compile Include="Entites\Destination.cs" />
     <Compile Include="Model\Result.cs" />
+    <Compile Include="Model\ResultCount.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="Userform\PersonalForm.cs" />
     <Compile Include="Helpers\ParseHelper.cs" />

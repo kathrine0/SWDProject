@@ -4,11 +4,47 @@
 }
 
 <h2>TestAlgoritm</h2>
-@{ var results = @Model.Result.Split('v'); }
 
-@foreach (var result in results)
+@using (Html.BeginForm("TestAlgoritm", "Main", FormMethod.Post))
 {
-    @result
+    @Html.AntiForgeryToken()
+    @Html.TextBoxFor(model => model.Input)
     <br/>
+    <input type="submit"/>
 }
+
+@Model.Result
+
+1, "Płeć", "=", "mężczyzna", true, FormulaElementaryType.Enter, //!= kobieta <br/>
+
+                2, "Szczepienia", "=", "posiada", false, FormulaElementaryType.Enter,<br />
+
+                3, "Lubi", "=", "góry", false, FormulaElementaryType.Enter,<br />
+                4, "Lubi", "=", "morze", false, FormulaElementaryType.Enter,<br />
+
+                5, "Forma wypoczynku", "=", "aktywna", false, FormulaElementaryType.Enter,<br />
+
+                6, "Wiek", ">", "10", true, FormulaElementaryType.Enter,<br />
+                7, "Wiek", ">", "20", true, FormulaElementaryType.Enter,<br />
+                8, "Wiek", ">", "30", true, FormulaElementaryType.Enter,<br />
+                9, "Wiek", ">", "40", true, FormulaElementaryType.Enter,<br />
+                10, "Wiek", ">", "50", true, FormulaElementaryType.Enter,<br />
+11, "Wiek", ">", "60", true, FormulaElementaryType.Enter,<br/>
+
+                12, "Zainteresowania", "=", "kitesurfing", false, FormulaElementaryType.Enter,<br />
+                13, "Zainteresowania", "=", "windsurfing", false, FormulaElementaryType.Enter,<br />
+                14, "Zainteresowania", "=", "chodzenie po górach", false, FormulaElementaryType.Enter,<br />
+                15, "Zainteresowania", "=", "plażing", false, FormulaElementaryType.Enter,<br />
+                16, "Zainteresowania", "=", "zwiedzanie", false, FormulaElementaryType.Enter,<br /><br />
+\
+                17, "Kierunek", "=", "Włochy", false, FormulaElementaryType.Exit,<br />
+                18, "Kierunek", "=", "Hiszpania", false, FormulaElementaryType.Exit,<br />
+                19, "Kierunek", "=", "Polska", false, FormulaElementaryType.Exit,<br />
+                20, "Kierunek", "=", "Grecja", false, FormulaElementaryType.Exit,<br />
+                21, "Kierunek", "=", "Austria", false, FormulaElementaryType.Exit,<br />
+                22, "Kierunek", "=", "Czechy", false, FormulaElementaryType.Exit,<br />
+                23, "Kierunek", "=", "Cypr", false, FormulaElementaryType.Exit,<br />
+                24, "Kierunek", "=", "Słowacja", false, FormulaElementaryType.Exit,<br />
+                25, "Kierunek", "=", "Indie", false, FormulaElementaryType.Exit,<br />
+                26, "Kierunek", "=", "Malezja", false, FormulaElementaryType.Exit,<br />
 

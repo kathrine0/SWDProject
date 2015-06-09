@@ -98,20 +98,34 @@ namespace SWD.Model
         public override bool Calculate(Dictionary<int, bool> formulaElementariesValue)
         {
             bool result = false;
-            switch (Operation)
+            if (RightExpression != null)
             {
-                case Operations.And:
-                    result = LeftExpression.Calculate(formulaElementariesValue) && RightExpression.Calculate(formulaElementariesValue); break;
-                case Operations.Or:
-                    result = LeftExpression.Calculate(formulaElementariesValue) || RightExpression.Calculate(formulaElementariesValue); break;
-                case Operations.Implication:
+                switch (Operation)
                 {
-                    result = !(LeftExpression.Calculate(formulaElementariesValue) && !RightExpression.Calculate(formulaElementariesValue));
+                    case Operations.And:
+                        result = LeftExpression.Calculate(formulaElementariesValue) &&
+                                 RightExpression.Calculate(formulaElementariesValue);
+                        break;
+                    case Operations.Or:
+                        result = LeftExpression.Calculate(formulaElementariesValue) ||
+                                 RightExpression.Calculate(formulaElementariesValue);
+                        break;
+                    case Operations.Implication:
+                    {
+                        result =
+                            !(LeftExpression.Calculate(formulaElementariesValue) &&
+                              !RightExpression.Calculate(formulaElementariesValue));
 
-                } break;
-                default:
-                    new Exception("Błędna operacja");
-                    break;
+                    }
+                        break;
+                    default:
+                        new Exception("Błędna operacja");
+                        break;
+                }
+            }
+            else
+            {
+                result = LeftExpression.Calculate(formulaElementariesValue);
             }
             if (Negation)
                 result = !result;
