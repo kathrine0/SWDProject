@@ -63,6 +63,11 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).FirstOrDefault();
         }
         
+        public List<int> GetListFormulasId(string name, List<string> values)
+        {
+            return db.FormulaElementaries.Where(q => q.Name == name && values.Any(w => w == q.Value)).Select(q => q.Id).ToList();
+        }
+
         #region private methods
 
         private List<string> GetPositivePlaces(string algoritmOutput)
