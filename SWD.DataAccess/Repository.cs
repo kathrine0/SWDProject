@@ -83,9 +83,9 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name).Select(q => q.Id).FirstOrDefault();
         }
 
-        public bool GetIsBoolPositive(int id, string value)
+        public bool GetIsBoolPositive(string name, string value)
         {
-            return db.FormulaElementaries.Where(q => q.Id == id).FirstOrDefault().Value == value;
+            return db.FormulaElementaries.Where(q => q.Name == name).FirstOrDefault().Value == value;
         }
 
         #region private methods
