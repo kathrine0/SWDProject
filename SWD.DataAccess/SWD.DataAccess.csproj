@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alghoritms\Alghoritm.cs" />
     <Compile Include="Algoritm\Algoritm.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Helpers\AlgoritmHelper.cs" />

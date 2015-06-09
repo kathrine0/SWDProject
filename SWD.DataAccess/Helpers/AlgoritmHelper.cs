@@ -43,11 +43,9 @@ namespace SWD.DataAccess.Helpers
 
         }
 
-        public Dictionary<int, bool> ParsePersonal(PersonalForm form)
-        {
-            var age = 
-
-
+        //public Dictionary<int, bool> ParsePersonal(PersonalForm form)
+        //{
+ 
             //var dictionary = new Dictionary<int, bool>();
             //dictionary.Add(1, form.Sex == sex.Mezczyzna);
             //dictionary.Add(6, form.Age > 10);
@@ -57,7 +55,7 @@ namespace SWD.DataAccess.Helpers
             //dictionary.Add(10, form.Age > 50);
             //dictionary.Add(11, form.Age > 60);
             //return dictionary;
-        }
+        //}
 
         public Dictionary<int, bool> ParseQuestion(QuestionForm form)
         {
