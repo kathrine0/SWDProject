@@ -1,4 +1,4 @@
-﻿@model SWD.Model.Userform.PersonalForm
+﻿@model SWD.Models.PersonalForm
 
 @{
     ViewBag.Title = "Dane osobiste";
@@ -33,7 +33,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
                         <div class="col-sm-8">
-                            @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Model.Userform.sex)), new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Models.sex)), new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Sex)
                         </div>
                     </div>

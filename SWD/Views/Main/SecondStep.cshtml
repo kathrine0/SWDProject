@@ -1,12 +1,57 @@
-﻿<section id="secondStep" class="secondStep" style="display:none">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>Krok drugi</h2>
-                <p class="lead">Tutaj będzie krok drugi</p>
-            </div>
-        </div>
-        <!-- /.row -->
+﻿@model SWD.Models.QuestionForm
+
+@{
+    ViewBag.Title = "Preferencje";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h2>Krok drugi</h2>
+            <p class="lead">Teraz zdefiniuj swoje preferencje</p>
+
+            @using (Html.BeginForm("FirstStep", "Main", FormMethod.Post, new { @class = "form-horizontal", id = "firstStepForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ActiveHoliday, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.CheckBoxFor(model => model.ActiveHoliday, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ActiveHoliday)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Vaccination, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.CheckBoxFor(model => model.Vaccination, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Vaccination)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Interests, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.ListBoxFor(model => model.Interests, new MultiSelectList(Model.AvailableInterests), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Interests)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Preferences, new { @class = "col-sm-4 control-label" })
+                        <div class="col-sm-8">
+                            @Html.ListBoxFor(model => model.Preferences, new MultiSelectList(Model.AvailablePreferences), new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Preferences)
+                        </div>
+                    </div>
+                </div>
+        }
+
     </div>
-    <!-- /.container -->
-</section>
+
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

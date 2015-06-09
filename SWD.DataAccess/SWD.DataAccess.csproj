@@ -48,10 +48,8 @@
   <ItemGroup>
     <Compile Include="Algoritm\Algoritm.cs" />
     <Compile Include="Context.cs" />
-    <Compile Include="Entites\Destination.cs" />
     <Compile Include="Model\Result.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="Userform\PersonalForm.cs" />
     <Compile Include="Helpers\ParseHelper.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\AbstractExpression.cs" />

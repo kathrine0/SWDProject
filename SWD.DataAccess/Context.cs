@@ -1,5 +1,4 @@
-﻿using SWD.DataAccess.Entites;
-using SWD.Model;
+﻿using SWD.Model;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -16,7 +15,7 @@ namespace SWD.DataAccess
         {
 
         }
-        public DbSet<Destination> Destinations { get; set; }
+
         public DbSet<FormulaElementary> FormulaElementaries { get; set; }
         public DbSet<Fact> Facts { get; set; }
     }

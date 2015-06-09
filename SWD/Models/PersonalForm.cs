@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
-namespace SWD.Model.Userform
+namespace SWD.Models
 {
     public enum sex { Kobieta, Mezczyzna }
     
