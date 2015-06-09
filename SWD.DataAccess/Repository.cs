@@ -73,15 +73,15 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name && values.All(w => w != q.Value)).Select(q => q.Id).ToList();
         }
 
-        //public int GetBoolId(string name, string value)
-        //{
-        //    var id = db.FormulaElementaries.Where(q => q.Name == name).Select(q => q.Id).ToList();
-        //}
+        public int GetBoolId(string name)
+        {
+            return db.FormulaElementaries.Where(q => q.Name == name).Select(q => q.Id).FirstOrDefault();
+        }
 
-        //public int GetBoolNegativeId(string name, string value)
-        //{
-
-        //}
+        public bool GetIsBoolPositive(int id, string value)
+        {
+            return db.FormulaElementaries.Where(q => q.Id == id).FirstOrDefault().Value == value;
+        }
 
         #region private methods
 
