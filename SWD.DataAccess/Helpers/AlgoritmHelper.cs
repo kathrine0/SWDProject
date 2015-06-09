@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWD.DataAccess.ViewModel;
 
 namespace SWD.DataAccess.Helpers
 {
@@ -40,6 +41,27 @@ namespace SWD.DataAccess.Helpers
             }
             return result;
 
+        }
+
+        public Dictionary<int, bool> ParsePersonal(PersonalForm form)
+        {
+            var dictionary = new Dictionary<int, bool>();
+            dictionary.Add(1, form.Sex == sex.Mezczyzna);
+            dictionary.Add(6, form.Age > 10);
+            dictionary.Add(7, form.Age > 20);
+            dictionary.Add(8, form.Age > 30);
+            dictionary.Add(9, form.Age > 40);
+            dictionary.Add(10, form.Age > 50);
+            dictionary.Add(11, form.Age > 60);
+            return dictionary;
+        }
+
+        public Dictionary<int, bool> ParseQuestion(QuestionForm form)
+        {
+            var dictionary = new Dictionary<int, bool>();
+            dictionary.Add(2, form.Vaccination);
+            dictionary.Add(2, form.Vaccination);
+            return dictionary;
         }
     }
 }
