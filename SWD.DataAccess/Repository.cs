@@ -58,11 +58,16 @@ namespace SWD.DataAccess
             return this.GetFormulasByName(name).Select(q => q.Value).ToList();
         }
 
-        public List<int> GetAgeFormulaId(int age)
+        public List<int> GetAgePositiveId(int age)
         {
             return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).ToList();
         }
-        
+
+        public List<int> GetAgeNegativeId(int age)
+        {
+            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) <= age).Select(w => w.Id).ToList();
+        }
+
         public List<int> GetListPositiveId(string name, List<string> values)
         {
             return db.FormulaElementaries.Where(q => q.Name == name && values.Any(w => w == q.Value)).Select(q => q.Id).ToList();
