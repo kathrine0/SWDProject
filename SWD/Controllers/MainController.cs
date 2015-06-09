@@ -16,6 +16,13 @@ namespace SWD.Controllers
 {
     public class MainController : Controller
     {
+        AlgoritmHelper algoritmHelper;
+
+        public MainController()
+        {
+            algoritmHelper = new AlgoritmHelper();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -90,8 +97,7 @@ namespace SWD.Controllers
                 {
                     SessionHelper.AddElement<QuestionForm>("QuestionForm", form);
 
-                    var result = new ResultModel();
-                    //TODO GEt result now
+                    var result = algoritmHelper.GetResult(SessionHelper.GetElement<PersonalForm>("PersonalForm"), form);
                     return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("ThirdStep", result, ControllerContext));
                 }
             }

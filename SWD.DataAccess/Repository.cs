@@ -44,14 +44,6 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name);
         }
 
-        public ResultModel GetResultPlaces(string algoritmOutput)
-        {
-            return new ResultModel()
-            {
-                RecommendedPlaces = GetPositivePlaces(algoritmOutput),
-                NotRecommendedPlaces = GetNegativePlaces(algoritmOutput)
-            };
-        }
 
         public List<string> GetAvailableValuesFor(string name)
         {
@@ -60,12 +52,30 @@ namespace SWD.DataAccess
 
         public List<int> GetAgePositiveId(int age)
         {
-            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).ToList();
+            var allAges = db.FormulaElementaries.Where(q => q.Name == "Wiek").ToList();
+            List<int> result = new List<int>();
+
+            foreach(var item in allAges)
+            {
+                if (int.Parse(item.Value) > age)
+                    result.Add(item.Id);
+            }
+
+            return result;
         }
 
         public List<int> GetAgeNegativeId(int age)
         {
-            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) <= age).Select(w => w.Id).ToList();
+            var allAges = db.FormulaElementaries.Where(q => q.Name == "Wiek").ToList();
+            List<int> result = new List<int>();
+
+            foreach (var item in allAges)
+            {
+                if (int.Parse(item.Value) <= age)
+                    result.Add(item.Id);
+            }
+
+            return result;
         }
 
         public List<int> GetListPositiveId(string name, List<string> values)
@@ -88,9 +98,9 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name).FirstOrDefault().Value == value;
         }
 
-        #region private methods
+        #region places methods
 
-        private List<string> GetPositivePlaces(string algoritmOutput)
+        public List<string> GetPositivePlaces(string algoritmOutput)
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, true);
 
@@ -99,7 +109,7 @@ namespace SWD.DataAccess
                 .ToList();
         }
 
-        private List<string> GetNegativePlaces(string algoritmOutput)
+        public List<string> GetNegativePlaces(string algoritmOutput)
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, false);
 
