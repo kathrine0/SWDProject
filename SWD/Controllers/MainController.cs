@@ -1,5 +1,4 @@
 ﻿using SWD.Helpers;
-using SWD.Model.Userform;
 using System;
 using System.Data;
 using System.ServiceModel.PeerResolvers;
@@ -10,6 +9,7 @@ using SWD.DataAccess.Model;
 using SWD.Model;
 using System.Collections.Generic;
 using System.Linq;
+using SWD.DataAccess.ViewModel;
 using SWD.DataAccess.Helpers;
 
 namespace SWD.Controllers

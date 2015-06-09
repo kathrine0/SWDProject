@@ -1,5 +1,4 @@
-﻿using SWD.DataAccess.Entites;
-using SWD.Model;
+﻿using SWD.Model;
 using System;
 using System.Data.Entity;
 
