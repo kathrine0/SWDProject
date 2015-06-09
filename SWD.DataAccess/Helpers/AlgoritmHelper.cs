@@ -50,7 +50,7 @@ namespace SWD.DataAccess.Helpers
             var dictionary = new Dictionary<int, bool>();
             
             
-            dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.Mezczyzna);
+            dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.mężczyzna);
 
             foreach (var id in repo.GetAgePositiveId(form.Age))
             {
