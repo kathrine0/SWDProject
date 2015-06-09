@@ -49,6 +49,7 @@
     <Compile Include="Algoritm\Algoritm.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Entites\Destination.cs" />
+    <Compile Include="Helpers\AlgoritmHelper.cs" />
     <Compile Include="Model\Result.cs" />
     <Compile Include="Model\ResultCount.cs" />
     <Compile Include="Repository.cs" />

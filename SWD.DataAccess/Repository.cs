@@ -41,6 +41,9 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name);
         }
 
-        
+        public List<string> GetAvailableValuesFor(string name)
+        {
+            return this.GetFormulasByName(name).Select(q => q.Value).ToList();
+        }
     }
 }

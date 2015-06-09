@@ -1,4 +1,4 @@
-﻿@model SWD.Model.Userform.PersonalForm
+﻿@model SWD.DataAccess.ViewModel.PersonalForm
 
 @{
     ViewBag.Title = "Dane osobiste";
@@ -12,36 +12,38 @@
             @using(Html.BeginForm("FirstStep", "Main", FormMethod.Post, new {@class = "form-horizontal", id = "firstStepForm"}))
             {
                 @Html.AntiForgeryToken()
-                <div class="col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label" })
-                        <div class="col-sm-8">
-                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Name)
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Age)
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Age, new { @class = "col-sm-4 control-label" })
-                        <div class="col-sm-8">
-                            @Html.TextBoxFor(model => model.Age, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Age)
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Models.sex)), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Sex)
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Sex, new { @class = "col-sm-4 control-label" })
-                        <div class="col-sm-8">
-                            @Html.DropDownListFor(model => model.Sex, EnumHelper.GetSelectList(typeof(SWD.Model.Userform.sex)), new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Sex)
-                        </div>
-                    </div>
+                <div class="row">
+                    <input type="submit" id="submitFirstStep" class="btn btn-dark btn-lg" value="Dalej">
                 </div>
             }
-            <div class="row">
-                <a id="submitFirstStep" class="btn btn-dark btn-lg">Dalej</a>
-            </div>
         </div>
     </div>
     <!-- /.row -->
@@ -49,10 +51,6 @@
 <!-- /.container -->
 
 <script>
-    $("#submitFirstStep").on("click", function () {
-        $('#firstStepForm').trigger("submit");
-    });
-
     $('#firstStepForm').on("submit", function () {
         // submit the form 
         $(this).ajaxSubmit(function (data) {
