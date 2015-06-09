@@ -20,7 +20,7 @@ namespace SWD.Models
             AvailablePreferences = _repository.GetAvailableValuesFor("Lubi");
         }
 
-        [Display(Name = "Czy jesteś zaszczepiony")]
+        [Display(Name = "Czy jesteś zaszczepiony?")]
         public Boolean Vaccination { get; set; }
 
         [Display(Name = "Preferencje")]
