@@ -58,9 +58,9 @@ namespace SWD.DataAccess
             return this.GetFormulasByName(name).Select(q => q.Value).ToList();
         }
 
-        public int GetAgeFormulaId(int age)
+        public List<int> GetAgeFormulaId(int age)
         {
-            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).FirstOrDefault();
+            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).ToList();
         }
         
         public List<int> GetListPositiveId(string name, List<string> values)
@@ -72,6 +72,16 @@ namespace SWD.DataAccess
         {
             return db.FormulaElementaries.Where(q => q.Name == name && values.All(w => w != q.Value)).Select(q => q.Id).ToList();
         }
+
+        //public int GetBoolId(string name, string value)
+        //{
+        //    var id = db.FormulaElementaries.Where(q => q.Name == name).Select(q => q.Id).ToList();
+        //}
+
+        //public int GetBoolNegativeId(string name, string value)
+        //{
+
+        //}
 
         #region private methods
 
