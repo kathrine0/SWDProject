@@ -90,8 +90,9 @@ namespace SWD.Controllers
                 {
                     SessionHelper.AddElement<QuestionForm>("QuestionForm", form);
 
-                    var nextForm = new QuestionForm();
-                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("ThirdStep", null, ControllerContext));
+                    var result = new ResultModel();
+                    //TODO GEt result now
+                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("ThirdStep", result, ControllerContext));
                 }
             }
             catch (DataException)
