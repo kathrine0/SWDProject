@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SWD.DataAccess.ViewModel
 {
-    public enum sex { Kobieta, Mezczyzna }
+    public enum sex { kobieta, mężczyzna }
     
     public class PersonalForm
     {
