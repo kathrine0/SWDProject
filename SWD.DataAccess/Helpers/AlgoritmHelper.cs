@@ -45,15 +45,18 @@ namespace SWD.DataAccess.Helpers
 
         public Dictionary<int, bool> ParsePersonal(PersonalForm form)
         {
-            var dictionary = new Dictionary<int, bool>();
-            dictionary.Add(1, form.Sex == sex.Mezczyzna);
-            dictionary.Add(6, form.Age > 10);
-            dictionary.Add(7, form.Age > 20);
-            dictionary.Add(8, form.Age > 30);
-            dictionary.Add(9, form.Age > 40);
-            dictionary.Add(10, form.Age > 50);
-            dictionary.Add(11, form.Age > 60);
-            return dictionary;
+            var age = 
+
+
+            //var dictionary = new Dictionary<int, bool>();
+            //dictionary.Add(1, form.Sex == sex.Mezczyzna);
+            //dictionary.Add(6, form.Age > 10);
+            //dictionary.Add(7, form.Age > 20);
+            //dictionary.Add(8, form.Age > 30);
+            //dictionary.Add(9, form.Age > 40);
+            //dictionary.Add(10, form.Age > 50);
+            //dictionary.Add(11, form.Age > 60);
+            //return dictionary;
         }
 
         public Dictionary<int, bool> ParseQuestion(QuestionForm form)

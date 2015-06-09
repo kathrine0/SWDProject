@@ -3,6 +3,7 @@ using SWD.Model;
 using System.Collections.Generic;
 using SWD.DataAccess.Helpers;
 using SWD.DataAccess.ViewModel;
+using System;
 
 namespace SWD.DataAccess
 {
@@ -57,6 +58,11 @@ namespace SWD.DataAccess
             return this.GetFormulasByName(name).Select(q => q.Value).ToList();
         }
 
+        public int GetAgeFormulaId(int age)
+        {
+            return db.FormulaElementaries.Where(q => q.Name == "Wiek" && Convert.ToInt32(q.Value) > age).Select(w => w.Id).FirstOrDefault();
+        }
+        
         #region private methods
 
         private List<string> GetPositivePlaces(string algoritmOutput)
