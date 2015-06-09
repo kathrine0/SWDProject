@@ -2,6 +2,7 @@
 using SWD.Model;
 using System.Collections.Generic;
 using SWD.DataAccess.Helpers;
+using SWD.DataAccess.ViewModel;
 
 namespace SWD.DataAccess
 {
@@ -42,7 +43,23 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Name == name);
         }
 
-        public List<string> GetPositivePlaces(string algoritmOutput)
+        public ResultModel GetResultPlaces(string algoritmOutput)
+        {
+            return new ResultModel()
+            {
+                RecommendedPlaces = GetPositivePlaces(algoritmOutput),
+                NotRecommendedPlaces = GetNegativePlaces(algoritmOutput)
+            };
+        }
+
+        public List<string> GetAvailableValuesFor(string name)
+        {
+            return this.GetFormulasByName(name).Select(q => q.Value).ToList();
+        }
+
+        #region private methods
+
+        private List<string> GetPositivePlaces(string algoritmOutput)
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, true);
 
@@ -51,7 +68,7 @@ namespace SWD.DataAccess
                 .ToList();
         }
 
-        public List<string> GetNegativePlaces(string algoritmOutput)
+        private List<string> GetNegativePlaces(string algoritmOutput)
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, false);
 
@@ -60,9 +77,6 @@ namespace SWD.DataAccess
                 .ToList();
         }
 
-        public List<string> GetAvailableValuesFor(string name)
-        {
-            return this.GetFormulasByName(name).Select(q => q.Value).ToList();
-        }
+        #endregion
     }
 }
