@@ -27,16 +27,15 @@ namespace SWD.DataAccess.Helpers
             return result;
         }
 
-        public static List<string> GetPositiveCity(string algoritmOutput)
+        public static List<int> GetPlaces(string algoritmOutput, bool isPositive)
         {
             var splitted = algoritmOutput.Replace("(", "").Replace(")", "").Split('^');
-            var result = new List<string>();
+            var result = new List<int>();
             foreach (var split in splitted)
             {
-                if (!split.Contains('!'))
+                if ((isPositive && !split.Contains('!')) || (!isPositive && split.Contains('!')))
                 {
-                    //todo Pobrać nazwy miejscowości - terazjest numer FormulaElementary
-                    result.Add(split);
+                    result.Add(Convert.ToInt32(split));
                 }
             }
             return result;

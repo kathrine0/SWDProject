@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using SWD.Model;
 using System.Collections.Generic;
+using SWD.DataAccess.Helpers;
 
 namespace SWD.DataAccess
 {
@@ -39,6 +40,24 @@ namespace SWD.DataAccess
         public IQueryable<FormulaElementary> GetFormulasByName(string name)
         {
             return db.FormulaElementaries.Where(q => q.Name == name);
+        }
+
+        public List<string> GetPositivePlaces(string algoritmOutput)
+        {
+            var idList = AlgoritmHelper.GetPlaces(algoritmOutput, true);
+
+            return db.FormulaElementaries.Where(q => q.Name == "Kierunek" && idList.Any(w => w == q.Id))
+                .Select(q => q.Value)
+                .ToList();
+        }
+
+        public List<string> GetNegativePlaces(string algoritmOutput)
+        {
+            var idList = AlgoritmHelper.GetPlaces(algoritmOutput, false);
+
+            return db.FormulaElementaries.Where(q => q.Name == "Kierunek" && idList.Any(w => w == q.Id))
+                .Select(q => q.Value)
+                .ToList();
         }
 
         public List<string> GetAvailableValuesFor(string name)
