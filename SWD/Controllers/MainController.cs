@@ -66,8 +66,10 @@ namespace SWD.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //TODO: logic here
-                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("SecondStep", form, ControllerContext));
+                    SessionHelper.AddElement<PersonalForm>("PersonalForm", form);
+
+                    var nextForm = new QuestionForm();
+                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("SecondStep", nextForm, ControllerContext));
                 }
             }
             catch (DataException)
@@ -78,28 +80,33 @@ namespace SWD.Controllers
            return JsonResponse.ErrorResponse(ViewHelper.RenderPartialToString("FirstStep", form, ControllerContext));
         }
 
-        public ActionResult SecondStep()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SecondStep(QuestionForm form)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    SessionHelper.AddElement<QuestionForm>("QuestionForm", form);
+
+                    var nextForm = new QuestionForm();
+                    return JsonResponse.OkResponse(ViewHelper.RenderPartialToString("ThirdStep", null, ControllerContext));
+                }
+            }
+            catch (DataException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+
+            return JsonResponse.ErrorResponse(ViewHelper.RenderPartialToString("SecondStep", form, ControllerContext));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult ThirdStep()
         {
             throw new NotImplementedException();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
     }
 }
