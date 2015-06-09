@@ -43,26 +43,71 @@ namespace SWD.DataAccess.Helpers
 
         }
 
-        //public Dictionary<int, bool> ParsePersonal(PersonalForm form)
-        //{
- 
-            //var dictionary = new Dictionary<int, bool>();
-            //dictionary.Add(1, form.Sex == sex.Mezczyzna);
-            //dictionary.Add(6, form.Age > 10);
-            //dictionary.Add(7, form.Age > 20);
-            //dictionary.Add(8, form.Age > 30);
-            //dictionary.Add(9, form.Age > 40);
-            //dictionary.Add(10, form.Age > 50);
-            //dictionary.Add(11, form.Age > 60);
-            //return dictionary;
-        //}
+        public Dictionary<int, bool> ParsePersonal(PersonalForm form)
+        {
+            Repository repo = new Repository();
+            
+            var dictionary = new Dictionary<int, bool>();
+            
+            
+            dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.Mezczyzna);
 
-        public Dictionary<int, bool> ParseQuestion(QuestionForm form)
+            foreach (var id in repo.GetAgePositiveId(form.Age))
+            {
+                dictionary.Add(id, true);
+            }
+
+            foreach (var id in repo.GetAgeNegativeId(form.Age))
+            {
+                dictionary.Add(id, false);
+            }
+
+            return dictionary;
+        }
+
+        public string ParseDictionaryToString(Dictionary<int, bool> dictionary)
+        {
+            string result = "";
+            foreach (var keyValue in dictionary)
+            {;
+                result += keyValue.Value ? keyValue.Key.ToString() : "!" + keyValue.Key;
+                result += "^";
+            }
+            return result.Substring(0, result.Length -1);
+        }
+
+        public string ParseQuestion(QuestionForm form)
         {
             var dictionary = new Dictionary<int, bool>();
-            dictionary.Add(2, form.Vaccination);
-            dictionary.Add(2, form.Vaccination);
-            return dictionary;
+            var repo = new Repository();
+            dictionary.Add(repo.GetBoolId("Szczepienia"), form.Vaccination);
+            dictionary.Add(repo.GetBoolId("Forma wypoczynku"), form.ActiveHoliday);
+            
+            var positiveInterests = repo.GetListPositiveId("Zainteresowania", form.Interests);
+            var negativeInterests = repo.GetListNegativeId("Zainteresowania", form.Interests);
+            var positivePreferences = repo.GetListPositiveId("Lubi", form.Preferences);
+            var negativePreferences = repo.GetListNegativeId("Lubi", form.Preferences);
+
+            foreach (var positiveInterest in positiveInterests)
+            {
+                dictionary.Add(positiveInterest, true);
+            }
+
+            foreach (var negativeInterest in negativeInterests)
+            {
+                dictionary.Add(negativeInterest, false);
+            }
+
+            foreach (var positivePreference in positivePreferences)
+            {
+                dictionary.Add(positivePreference, true);
+            }
+
+            foreach (var negativePreference in negativePreferences)
+            {
+                dictionary.Add(negativePreference, false);
+            }
+            return ParseDictionaryToString(dictionary);
         }
     }
 }
