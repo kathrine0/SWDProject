@@ -80,11 +80,15 @@ namespace SWD.DataAccess
 
         public List<int> GetListPositiveId(string name, List<string> values)
         {
+            if (values == null) values = new List<string>();
+
             return db.FormulaElementaries.Where(q => q.Name == name && values.Any(w => w == q.Value)).Select(q => q.Id).ToList();
         }
 
         public List<int> GetListNegativeId(string name, List<string> values)
         {
+            if (values == null) values = new List<string>();
+
             return db.FormulaElementaries.Where(q => q.Name == name && values.All(w => w != q.Value)).Select(q => q.Id).ToList();
         }
 

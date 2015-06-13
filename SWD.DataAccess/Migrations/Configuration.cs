@@ -55,15 +55,16 @@
             context.SaveChanges();
 
             var facts = new List<Fact>() {
-                new Fact{ ExpressionString = "(!1^15)>(17v18v20v23)"},
+                new Fact{ ExpressionString = "(12v13v15)>!(21v22v24)"},
+                //new Fact{ ExpressionString = "(!1^15)>(17v18v20v23)"},
                 new Fact{ ExpressionString = "(!2)>(!25^!26)"},
-                new Fact{ ExpressionString = "(3^!8)>14"},
-                new Fact{ ExpressionString = "(14^!9)>21"},
-                new Fact{ ExpressionString = "(14^9)>24"},
-                new Fact{ ExpressionString = "(5^!8)>12v13"},
-                new Fact{ ExpressionString = "(5^8)>16"},
-                new Fact{ ExpressionString = "(3)>(19v21v24)"},
-                new Fact{ ExpressionString = "4>(17v18v20v23v25v26)"},
+                //new Fact{ ExpressionString = "(3^!8)>14"},
+                //new Fact{ ExpressionString = "(14^!9)>21"},
+                //new Fact{ ExpressionString = "(14^9)>24"},
+                //new Fact{ ExpressionString = "(5^!8)>12v13"},
+                //new Fact{ ExpressionString = "(5^8)>16"},
+                //new Fact{ ExpressionString = "(3)>(19v21v24)"},
+                //new Fact{ ExpressionString = "4>(17v18v20v23v25v26)"},
             };
 
             context.Facts.AddOrUpdate(facts.ToArray());
