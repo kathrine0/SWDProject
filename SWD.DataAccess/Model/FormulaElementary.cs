@@ -79,5 +79,6 @@ namespace SWD.Model
                 result = !result;
             return result;
         }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,18 +12,22 @@ namespace SWD.DataAccess.Helpers
     {
         public static string GetTheBest(string algoritmOutput)
         {
-            var result = "";
             var results = algoritmOutput.Split('v');
 
-            int min = 99999;
+            return GetTheBest(results);
+        }
 
-            foreach (var item in results)
+        public static string GetTheBest(string[] algoritmOutput)
+        {
+            int min = 99999;
+            var result = "";
+            foreach (var item in algoritmOutput)
             {
                 int count = item.Length - item.Replace("!", "").Length;
                 if (count < min)
                 {
                     min = count;
-                    result= item;
+                    result = item;
                 }
             }
             return result;
@@ -65,7 +70,7 @@ namespace SWD.DataAccess.Helpers
             return dictionary;
         }
 
-        public string ParseDictionaryToString(Dictionary<int, bool> dictionary)
+        public static string ParseDictionaryToString(Dictionary<int, bool> dictionary)
         {
             string result = "";
             foreach (var keyValue in dictionary)

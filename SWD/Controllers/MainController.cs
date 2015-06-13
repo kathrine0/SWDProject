@@ -29,7 +29,7 @@ namespace SWD.Controllers
             if (model.Input != null)
             {
                 //var input = new Fact("!2^3^16");
-                var input = new Fact(model.Input);
+                var input = new Fact(-1, model.Input);
 
                 var dictionary = new Dictionary<int, bool>
                 {
@@ -42,10 +42,14 @@ namespace SWD.Controllers
                     {11, false}
                 };
 
-                var result = Algoritm.Run(facts, input, dictionary);
+               // dictionary = new Dictionary<int, bool>();
 
 
-                res = AlgoritmHelper.GetTheBest(result);
+                var result = Algoritm.RunWithDecomposition(facts, input, dictionary);
+
+
+                //res = AlgoritmHelper.GetTheBest(result);
+                res = result;
             }
 
 
