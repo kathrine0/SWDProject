@@ -5,11 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SWD.DataAccess.ViewModel;
+using SWD.Model;
 
 namespace SWD.DataAccess.Helpers
 {
     public class AlgoritmHelper
     {
+        Repository repo = new Repository();
+
         public static string GetTheBest(string algoritmOutput)
         {
             var results = algoritmOutput.Split('v');
@@ -39,22 +42,41 @@ namespace SWD.DataAccess.Helpers
             var result = new List<int>();
             foreach (var split in splitted)
             {
-                if ((isPositive && !split.Contains('!')) || (!isPositive && split.Contains('!')))
+                if (!string.IsNullOrEmpty(split) && (isPositive && !split.Contains('!')) || (!isPositive && split.Contains('!')))
                 {
-                    result.Add(Convert.ToInt32(split));
+                    var split2 = split.Replace("!", "");
+                    result.Add(Convert.ToInt32(split2));
                 }
             }
             return result;
-
         }
 
-        public Dictionary<int, bool> ParsePersonal(PersonalForm form)
+
+        /// <summary>
+        /// THE MOST IMPORTANT FUNCTION
+        /// </summary>
+        public ResultModel GetResult(PersonalForm form1, QuestionForm form2)
         {
-            Repository repo = new Repository();
+            var res1 = ParsePersonal(form1);
+            var res2 = ParseQuestion(form2);
+
+            var resultString = Algoritm.Algoritm.Run(repo.GetFacts(), new Fact(res2), res1);
+            var algoritmOutput = GetTheBest(resultString);
             
+            return new ResultModel()
+            {
+                RecommendedPlaces = repo.GetPositivePlaces(algoritmOutput),
+                NotRecommendedPlaces = repo.GetNegativePlaces(algoritmOutput)
+            };
+        }
+
+        private Dictionary<int, bool> ParsePersonal(PersonalForm form)
+        {
+           
+
             var dictionary = new Dictionary<int, bool>();
-            
-            
+
+
             dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.mężczyzna);
 
             foreach (var id in repo.GetAgePositiveId(form.Age))
@@ -70,11 +92,12 @@ namespace SWD.DataAccess.Helpers
             return dictionary;
         }
 
+
         public static string ParseDictionaryToString(Dictionary<int, bool> dictionary)
         {
             string result = "";
             foreach (var keyValue in dictionary)
-            {;
+            {
                 result += keyValue.Value ? keyValue.Key.ToString() : "!" + keyValue.Key;
                 result += "^";
             }
