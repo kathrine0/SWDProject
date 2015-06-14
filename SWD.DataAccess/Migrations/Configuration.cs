@@ -45,16 +45,23 @@
                 new FormulaElementary(14, "Zainteresowania", "=", "chodzenie po górach", false, FormulaElementaryType.Enter),
                 new FormulaElementary(15, "Zainteresowania", "=", "plażing", false, FormulaElementaryType.Enter),
                 new FormulaElementary(16, "Zainteresowania", "=", "zwiedzanie", false, FormulaElementaryType.Enter),
-                new FormulaElementary(17, "Kierunek", "=", "Włochy", false, FormulaElementaryType.Exit),
-                new FormulaElementary(18, "Kierunek", "=", "Hiszpania", false, FormulaElementaryType.Exit),
-                new FormulaElementary(19, "Kierunek", "=", "Polska", false, FormulaElementaryType.Exit),
-                new FormulaElementary(20, "Kierunek", "=", "Grecja", false, FormulaElementaryType.Exit),
-                new FormulaElementary(21, "Kierunek", "=", "Austria", false, FormulaElementaryType.Exit),
-                new FormulaElementary(22, "Kierunek", "=", "Czechy", false, FormulaElementaryType.Exit),
-                new FormulaElementary(23, "Kierunek", "=", "Cypr", false, FormulaElementaryType.Exit),
-                new FormulaElementary(24, "Kierunek", "=", "Słowacja", false, FormulaElementaryType.Exit),
-                new FormulaElementary(25, "Kierunek", "=", "Indie", false, FormulaElementaryType.Exit),
-                new FormulaElementary(26, "Kierunek", "=", "Malezja", false, FormulaElementaryType.Exit),
+
+               
+                new FormulaElementary(17, "Kierunek", "=", "Włochy", false, FormulaElementaryType.Other),
+                new FormulaElementary(18, "Kierunek", "=", "Hiszpania", false, FormulaElementaryType.Other),
+                new FormulaElementary(19, "Kierunek", "=", "Polska", false, FormulaElementaryType.Other),
+                new FormulaElementary(20, "Kierunek", "=", "Grecja", false, FormulaElementaryType.Other),
+                new FormulaElementary(21, "Kierunek", "=", "Austria", false, FormulaElementaryType.Other),
+                new FormulaElementary(22, "Kierunek", "=", "Czechy", false, FormulaElementaryType.Other),
+                new FormulaElementary(23, "Kierunek", "=", "Cypr", false, FormulaElementaryType.Other),
+                new FormulaElementary(24, "Kierunek", "=", "Słowacja", false, FormulaElementaryType.Other),
+                new FormulaElementary(25, "Kierunek", "=", "Indie", false, FormulaElementaryType.Other),
+                new FormulaElementary(26, "Kierunek", "=", "Malezja", false, FormulaElementaryType.Other),
+
+                new FormulaElementary(27, "Wycieczka", "=", "Śródziemnomorska", false, FormulaElementaryType.Exit),
+                new FormulaElementary(28, "Wycieczka", "=", "Krajowa", false, FormulaElementaryType.Exit),
+                new FormulaElementary(29, "Wycieczka", "=", "Kontynentalna", false, FormulaElementaryType.Exit),
+                new FormulaElementary(30, "Wycieczka", "=", "Dalekomorska", false, FormulaElementaryType.Exit)
                
             };
 
@@ -65,7 +72,14 @@
               
                 new Fact{ ExpressionString = "(12v13v15)>!(21v22v24)"},
                 new Fact{ ExpressionString = "(!2)>(!25^!26)"},
-                new Fact{ ExpressionString = "!1>!26"}
+                new Fact{ ExpressionString = "!1>!26"},
+                
+                new Fact{ ExpressionString = "!(17^18^20^23)>!27"},
+                new Fact{ ExpressionString = "!19>!28"},
+                new Fact{ ExpressionString = "!(21^22^24)>!29"},
+                new Fact{ ExpressionString = "!(25^26)>!30"},
+                
+
                
             };
 

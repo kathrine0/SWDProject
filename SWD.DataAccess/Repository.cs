@@ -114,7 +114,7 @@ namespace SWD.DataAccess
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, true);
 
-            return db.FormulaElementaries.Where(q => q.Name == "Kierunek" && idList.Any(w => w == q.Id))
+            return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Exit && idList.Any(w => w == q.Id))
                 .Select(q => q.Value)
                 .ToList();
         }
@@ -123,7 +123,7 @@ namespace SWD.DataAccess
         {
             var idList = AlgoritmHelper.GetPlaces(algoritmOutput, false);
 
-            return db.FormulaElementaries.Where(q => q.Name == "Kierunek" && idList.Any(w => w == q.Id))
+            return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Exit && idList.Any(w => w == q.Id))
                 .Select(q => q.Value)
                 .ToList();
         }
