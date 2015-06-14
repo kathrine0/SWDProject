@@ -53,9 +53,7 @@ namespace SWD.Controllers
 
 
                 var result = Algoritm.RunWithDecomposition(facts, input, dictionary);
-
-
-                //res = AlgoritmHelper.GetTheBest(result);
+ 
                 res = result;
             }
 

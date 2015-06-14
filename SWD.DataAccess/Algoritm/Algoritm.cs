@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography.X509Certificates;
 using SWD.DataAccess.Helpers;
 using SWD.DataAccess.Model;
@@ -51,8 +52,9 @@ namespace SWD.DataAccess.Algoritm
                 res += item + "v";
             }
 
+
             if (res.Length > 0)
-                return res.Substring(0, res.Length - 1);
+                return AlgoritmHelper.GetTheBest(res.Substring(0, res.Length - 1));
             return "";
         }
 
@@ -122,13 +124,20 @@ namespace SWD.DataAccess.Algoritm
                 }
             }
 
-            var results = new string[256];
-            for (i = 0; i < listDictionaries.Count; i++)
+            if (listDictionaries.Any())
             {
-                results[i] = AlgoritmHelper.ParseDictionaryToString(listDictionaries[i]);
-            }
+                var results = new string[listDictionaries.Count];
+                for (i = 0; i < listDictionaries.Count; i++)
+                {
+                    results[i] = AlgoritmHelper.ParseDictionaryToString(listDictionaries[i]);
+                }
 
-            return AlgoritmHelper.GetTheBest(results);
+                return AlgoritmHelper.GetTheBest(results);
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         private static bool CalculateFact(Dictionary<int, bool> formulaElementariesValue, Fact fact )
