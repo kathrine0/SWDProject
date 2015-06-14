@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Cryptography.X509Certificates;
 using SWD.DataAccess.Helpers;
 using SWD.DataAccess.Model;
 using SWD.Model;
@@ -88,6 +85,7 @@ namespace SWD.DataAccess.Algoritm
 
             var listDictionaries = new List<Dictionary<int, bool>>();
             listDictionaries.Add(new Dictionary<int, bool>());
+            var userConstansFormulaElementary = constansFormulaElementary;
             for (i = decompositionsFact.Count; i > 0; i--)
             {
                 var currentListDicrionaries = listDictionaries;
@@ -99,6 +97,27 @@ namespace SWD.DataAccess.Algoritm
                 foreach(var listDictionary in currentListDicrionaries)
                 {
                     constansFormulaElementary = listDictionary;
+                    //TODO
+                    //1. Trzeba dodać elementy userConstansFormula elementary, któe są w ap oraz an, a nie ma ich w nostans
+                    //2. Jeśli są w ap i jest więcej rozwiązań to przyjąć tylko te co mają tą samą wartość co w const
+
+                    foreach (var userConst in userConstansFormulaElementary)
+                    {
+                        if (tempList.Any(x => x.Id == userConst.Key))
+                        {
+                            //Tutaj robimy coś jeśli ap i an zawierają klucz usera
+                            if (constansFormulaElementary.All(x => x.Key != userConst.Key))
+                            {
+                                constansFormulaElementary.Add(userConst.Key, userConst.Value);
+                            }
+                            else
+                            {
+                                constansFormulaElementary[userConst.Key] = userConst.Value;
+                            }
+                        }
+                    }
+
+
 
                     for (var j = 0; j < Math.Pow(2, tempList.Count-constansFormulaElementary.Count); j++)
                     {

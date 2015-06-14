@@ -65,6 +65,7 @@
               
                 new Fact{ ExpressionString = "(12v13v15)>!(21v22v24)"},
                 new Fact{ ExpressionString = "(!2)>(!25^!26)"},
+                new Fact{ ExpressionString = "!1>!26"}
                
             };
 
