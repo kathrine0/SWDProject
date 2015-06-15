@@ -71,10 +71,8 @@ namespace SWD.DataAccess.Helpers
 
         private Dictionary<int, bool> ParsePersonal(PersonalForm form)
         {
-           
-
             var dictionary = new Dictionary<int, bool>();
-
+            var repo = new Repository();
 
             dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.mężczyzna);
 
@@ -88,9 +86,21 @@ namespace SWD.DataAccess.Helpers
                 dictionary.Add(id, false);
             }
 
+            var positivePreferences = repo.GetListPositiveId("Lubi", form.Preferences);
+            var negativePreferences = repo.GetListNegativeId("Lubi", form.Preferences);
+
+            foreach (var positivePreference in positivePreferences)
+            {
+                dictionary.Add(positivePreference, true);
+            }
+
+            foreach (var negativePreference in negativePreferences)
+            {
+                dictionary.Add(negativePreference, false);
+            }
+
             return dictionary;
         }
-
 
         public static string ParseDictionaryToString(Dictionary<int, bool> dictionary)
         {
@@ -107,13 +117,9 @@ namespace SWD.DataAccess.Helpers
         {
             var dictionary = new Dictionary<int, bool>();
             var repo = new Repository();
-            dictionary.Add(repo.GetBoolId("Szczepienia"), form.Vaccination);
-            dictionary.Add(repo.GetBoolId("Forma wypoczynku"), form.ActiveHoliday);
             
             var positiveInterests = repo.GetListPositiveId("Zainteresowania", form.Interests);
             var negativeInterests = repo.GetListNegativeId("Zainteresowania", form.Interests);
-            var positivePreferences = repo.GetListPositiveId("Lubi", form.Preferences);
-            var negativePreferences = repo.GetListNegativeId("Lubi", form.Preferences);
 
             foreach (var positiveInterest in positiveInterests)
             {
@@ -125,15 +131,8 @@ namespace SWD.DataAccess.Helpers
                 dictionary.Add(negativeInterest, false);
             }
 
-            foreach (var positivePreference in positivePreferences)
-            {
-                dictionary.Add(positivePreference, true);
-            }
-
-            foreach (var negativePreference in negativePreferences)
-            {
-                dictionary.Add(negativePreference, false);
-            }
+            dictionary.Add(repo.GetBoolId("Forma wypoczynku"), form.ActiveHoliday);
+            
             return ParseDictionaryToString(dictionary);
         }
     }

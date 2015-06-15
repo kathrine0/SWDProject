@@ -24,10 +24,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Vaccination, new { @class = "col-sm-8 control-label" })
+                    @Html.LabelFor(model => model.Decomposition, new { @class = "col-sm-8 control-label" })
                     <div class="col-sm-4">
-                        @Html.CheckBoxFor(model => model.Vaccination, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Vaccination)
+                        @Html.CheckBoxFor(model => model.Decomposition, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Decomposition)
                     </div>
                 </div>
             </div>
@@ -40,13 +40,7 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Preferences, new { @class = "col-sm-4 control-label" })
-                    <div class="col-sm-8">
-                        @Html.ListBoxFor(model => model.Preferences, new MultiSelectList(Model.AvailablePreferences), new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Preferences)
-                    </div>
-                </div>
+                
             </div>
         </div>
         <div class="row">

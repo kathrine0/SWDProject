@@ -30,7 +30,7 @@
                 new FormulaElementary(10, "10",false,FormulaElementaryType.Exit)
                 */
                 new FormulaElementary(1, "Płeć", "=", "mężczyzna", true, FormulaElementaryType.Enter), //!=  kobieta
-                new FormulaElementary(2, "Szczepienia", "=", "posiada", false, FormulaElementaryType.Enter),
+                new FormulaElementary(2, "Lubi", "=", "dżunglę", false, FormulaElementaryType.Enter),
                 new FormulaElementary(3, "Lubi", "=", "góry", false, FormulaElementaryType.Enter),
                 new FormulaElementary(4, "Lubi", "=", "morze", false, FormulaElementaryType.Enter),
                 new FormulaElementary(5, "Forma wypoczynku", "=", "aktywna", false, FormulaElementaryType.Enter),
