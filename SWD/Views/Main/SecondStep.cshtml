@@ -56,12 +56,17 @@
 <!-- /.container -->
 
 <script>
+
+    var timeElapsed;
+
     $('#secondStepForm').on("submit", function () {
         // submit the form
+        var startTime = Date.now();
         $(this).ajaxSubmit(function (data) {
             if (data.status == "Ok") {
-                console.log(data.view);
+                timeElapsed = Date.now() - startTime;
                 goToStepHtml("#thirdStep", data.view);
+                $("#RunTime").text(timeElapsed);
             } else {
                 alert("proszę poprawić błędy formularza");
                 $("#secondStep").html("");

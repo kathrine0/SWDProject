@@ -60,7 +60,12 @@ namespace SWD.DataAccess.Helpers
             var res1 = ParsePersonal(form1);
             var res2 = ParseQuestion(form2);
 
-            var algoritmOutput = Algoritm.Algoritm.RunWithDecomposition(repo.GetFacts(), new Fact(res2), res1);
+            String algoritmOutput;
+
+            if (form2.Decomposition)
+                algoritmOutput = Algoritm.Algoritm.RunWithDecomposition(repo.GetFacts(), new Fact(res2), res1);
+            else
+                algoritmOutput = Algoritm.Algoritm.Run(repo.GetFacts(), new Fact(res2), res1);
             
             return new ResultModel()
             {

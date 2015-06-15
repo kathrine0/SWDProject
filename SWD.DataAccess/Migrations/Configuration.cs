@@ -17,22 +17,11 @@
         protected override void Seed(Context context)
         {
             var elementaries = new List<FormulaElementary>() { 
-                /*
-                new FormulaElementary(1, "1",false,FormulaElementaryType.Enter),
-                new FormulaElementary(2, "2",false,FormulaElementaryType.Enter),
-                new FormulaElementary(3, "3",false,FormulaElementaryType.Enter),
-                new FormulaElementary(4, "4",false,FormulaElementaryType.Enter),
-                new FormulaElementary(5, "5",false,FormulaElementaryType.Enter),
-                new FormulaElementary(6, "6",false,FormulaElementaryType.Enter),
-                new FormulaElementary(7, "7",false,FormulaElementaryType.Enter),
-                new FormulaElementary(8, "8",false,FormulaElementaryType.Enter),
-                new FormulaElementary(9, "9",false,FormulaElementaryType.Exit),
-                new FormulaElementary(10, "10",false,FormulaElementaryType.Exit)
-                */
+
                 new FormulaElementary(1, "Płeć", "=", "mężczyzna", true, FormulaElementaryType.Enter), //!=  kobieta
-                new FormulaElementary(2, "Lubi", "=", "dżunglę", false, FormulaElementaryType.Enter),
-                new FormulaElementary(3, "Lubi", "=", "góry", false, FormulaElementaryType.Enter),
-                new FormulaElementary(4, "Lubi", "=", "morze", false, FormulaElementaryType.Enter),
+                new FormulaElementary(2, "Lubi", "=", "dżunglę", true, FormulaElementaryType.Enter),
+                new FormulaElementary(3, "Lubi", "=", "góry", true, FormulaElementaryType.Enter),
+                new FormulaElementary(4, "Lubi", "=", "morze", true, FormulaElementaryType.Enter),
                 new FormulaElementary(5, "Forma wypoczynku", "=", "aktywna", false, FormulaElementaryType.Enter),
                 new FormulaElementary(6, "Wiek", ">", "10", true, FormulaElementaryType.Enter),
                 new FormulaElementary(7, "Wiek", ">", "20", true, FormulaElementaryType.Enter),
@@ -78,9 +67,6 @@
                 new Fact{ ExpressionString = "!19>!28"},
                 new Fact{ ExpressionString = "!(21^22^24)>!29"},
                 new Fact{ ExpressionString = "!(25^26)>!30"},
-                
-
-               
             };
 
             context.Facts.AddOrUpdate(facts.ToArray());
