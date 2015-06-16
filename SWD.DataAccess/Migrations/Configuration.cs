@@ -76,7 +76,7 @@
                 
                 new Fact{ ExpressionString = "27>(17^18^20^23)"},
                 new Fact{ ExpressionString = "28>19"},
-                new Fact{ ExpressionString = "29>(21^22^24"},
+                new Fact{ ExpressionString = "29>(21^22^24)"},
                 new Fact{ ExpressionString = "30>(25^26)"},
                 
 
