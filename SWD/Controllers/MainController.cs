@@ -59,7 +59,6 @@ namespace SWD.Controllers
                 res = result;
             }
 
-
             return View(new StringResult{Result= res});
         }
 

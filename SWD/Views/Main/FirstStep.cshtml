@@ -40,6 +40,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Preferences, new { @class = "col-sm-4 control-label" })
+                            <div class="col-sm-8">
+                                @Html.ListBoxFor(model => model.Preferences, new MultiSelectList(Model.AvailablePreferences), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Preferences)
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <input type="submit" id="submitFirstStep" class="btn btn-dark btn-lg" value="Dalej">

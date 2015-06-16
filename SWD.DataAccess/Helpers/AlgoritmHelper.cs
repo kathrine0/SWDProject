@@ -61,7 +61,12 @@ namespace SWD.DataAccess.Helpers
             var res1 = ParsePersonal(form1);
             var res2 = ParseQuestion(form2);
 
-            var algoritmOutput = Algoritm.Algoritm.RunWithDecomposition(repo.GetFacts(), new Fact(res2), res1);
+            String algoritmOutput;
+
+            if (form2.Decomposition)
+                algoritmOutput = Algoritm.Algoritm.RunWithDecomposition(repo.GetFacts(), new Fact(res2), res1);
+            else
+                algoritmOutput = Algoritm.Algoritm.Run(repo.GetFacts(), new Fact(res2), res1);
             
             return new ResultModel()
             {
@@ -80,10 +85,8 @@ namespace SWD.DataAccess.Helpers
 
         private Dictionary<int, bool> ParsePersonal(PersonalForm form)
         {
-           
-
             var dictionary = new Dictionary<int, bool>();
-
+            var repo = new Repository();
 
             dictionary.Add(repo.GetBoolId("Płeć"), form.Sex == sex.mężczyzna);
 
@@ -97,9 +100,21 @@ namespace SWD.DataAccess.Helpers
                 dictionary.Add(id, false);
             }
 
+            var positivePreferences = repo.GetListPositiveId("Lubi", form.Preferences);
+            var negativePreferences = repo.GetListNegativeId("Lubi", form.Preferences);
+
+            foreach (var positivePreference in positivePreferences)
+            {
+                dictionary.Add(positivePreference, true);
+            }
+
+            foreach (var negativePreference in negativePreferences)
+            {
+                dictionary.Add(negativePreference, false);
+            }
+
             return dictionary;
         }
-
 
         public static string ParseDictionaryToString(Dictionary<int, bool> dictionary)
         {
@@ -116,13 +131,9 @@ namespace SWD.DataAccess.Helpers
         {
             var dictionary = new Dictionary<int, bool>();
             var repo = new Repository();
-            dictionary.Add(repo.GetBoolId("Szczepienia"), form.Vaccination);
-            dictionary.Add(repo.GetBoolId("Forma wypoczynku"), form.ActiveHoliday);
             
             var positiveInterests = repo.GetListPositiveId("Zainteresowania", form.Interests);
             var negativeInterests = repo.GetListNegativeId("Zainteresowania", form.Interests);
-            var positivePreferences = repo.GetListPositiveId("Lubi", form.Preferences);
-            var negativePreferences = repo.GetListNegativeId("Lubi", form.Preferences);
 
             foreach (var positiveInterest in positiveInterests)
             {
@@ -134,15 +145,8 @@ namespace SWD.DataAccess.Helpers
                 dictionary.Add(negativeInterest, false);
             }
 
-            foreach (var positivePreference in positivePreferences)
-            {
-                dictionary.Add(positivePreference, true);
-            }
-
-            foreach (var negativePreference in negativePreferences)
-            {
-                dictionary.Add(negativePreference, false);
-            }
+            dictionary.Add(repo.GetBoolId("Forma wypoczynku"), form.ActiveHoliday);
+            
             return ParseDictionaryToString(dictionary);
         }
     }

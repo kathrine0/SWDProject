@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row text-center">
         <div class="col-lg-10 col-lg-offset-1">
-            <h2>Wyniki</h2>
+            <h2>Wyniki (czas: <span id="RunTime"></span> ms)</h2>
             <hr class="small">
             <div class="row">
                 <div class="col-md-3 col-sm-6">
@@ -23,7 +23,7 @@
                             <i class="fa fa-compass fa-stack-1x text-primary"></i>
                         </span>
                         <h4>
-                            <strong>Gdzie powinieneś jechać</strong>
+                            <strong>Jaką wycieczkę powinieneś wybrać</strong>
                         </h4>
                         @foreach (var place in Model.RecommendedPlaces)
                         {
@@ -38,7 +38,7 @@
                             <i class="fa fa-shield fa-stack-1x text-primary"></i>
                         </span>
                         <h4>
-                            <strong>Gdzie nie powinieneś jechać</strong>
+                            <strong>Jakiej wycieczki nie powinieneś wybrać</strong>
                         </h4>
                         @foreach (var place in Model.NotRecommendedPlaces)
                         {

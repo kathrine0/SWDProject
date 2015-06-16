@@ -11,6 +11,14 @@ namespace SWD.DataAccess.ViewModel
     
     public class PersonalForm
     {
+        private Repository _repository;
+
+        public PersonalForm()
+        {
+            _repository = new Repository();
+            AvailablePreferences = _repository.GetAvailableValuesFor("Lubi");
+        }
+
         [Required]
         [Display(Name = "Podaj swoje imię")]
         public string Name { get; set; }
@@ -20,6 +28,10 @@ namespace SWD.DataAccess.ViewModel
 
         [Display(Name="Podaj swoją płeć")]
         public sex Sex { get; set; }    
-            
+
+        [Display(Name = "Preferencje")]
+        public List<string> Preferences { get; set; }      
+
+        public List<string> AvailablePreferences { get; private set; }
     }
 }
