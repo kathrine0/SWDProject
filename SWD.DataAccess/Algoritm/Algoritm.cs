@@ -112,7 +112,8 @@ namespace SWD.DataAccess.Algoritm
                             }
                             else
                             {
-                                constansFormulaElementary[userConst.Key] = userConst.Value;
+                                if (constansFormulaElementary[userConst.Key] != userConst.Value)
+                                    constansFormulaElementary.Remove(userConst.Key);
                             }
                         }
                     }
@@ -137,6 +138,88 @@ namespace SWD.DataAccess.Algoritm
                                 dict.Add(ap.Id, dictionary[ap.Id]);
                             }
                             if(!listDictionaries.Exists(x=> x.SequenceEqual(dict)))
+                                listDictionaries.Add(dict);
+                        }
+                    }
+                }
+            }
+
+            if (listDictionaries.Any())
+            {
+                var results = new string[listDictionaries.Count];
+                for (i = 0; i < listDictionaries.Count; i++)
+                {
+                    results[i] = AlgoritmHelper.ParseDictionaryToString(listDictionaries[i]);
+                }
+
+                return AlgoritmHelper.GetTheBest(results);
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        public static string RunWithDecompositionsynthesis(Fact[] facts, Fact input, Dictionary<int, bool> constansFormulaElementary)
+        {
+            var repository = new Repository();
+            var decompositionsFact = new Dictionary<int, DecompositionFact>();
+            var usedFormulas = new List<FormulaElementary>();
+            var allFacts = new List<Fact>(facts);
+
+            var allFormulas = repository.GetFormulaElementaries();
+            var formulaExit = repository.GetFormulaElementariesEnterAndExit();
+            var lastformulas = formulaExit;
+            usedFormulas.AddRange(lastformulas);
+
+            var finish = false;
+            var i = 1;
+            while (!finish)
+            {
+                var decompositionFact = new DecompositionFact(lastformulas, allFacts, usedFormulas);
+                lastformulas = decompositionFact.AN;
+                usedFormulas.AddRange(lastformulas);
+                allFacts.RemoveAll(x => decompositionFact.Facts.Any(q => q.ID == x.ID));
+                if(decompositionFact.Facts.Count !=0)
+                    decompositionsFact.Add(i, decompositionFact);
+                if (allFacts.Count == 0 || usedFormulas.Count == allFormulas.Count() || decompositionFact.Facts.Count == 0)
+                    finish = true;
+                i++;
+            }
+
+
+            var listDictionaries = new List<Dictionary<int, bool>>();
+            listDictionaries.Add(new Dictionary<int, bool>());
+            for (i = decompositionsFact.Count; i > 0; i--)
+            {
+                var currentListDicrionaries = listDictionaries;
+                listDictionaries = new List<Dictionary<int, bool>>();
+                var decompositionFact = decompositionsFact[i];
+                var tempList = new List<FormulaElementary>(decompositionFact.AP);
+                tempList.AddRange(decompositionFact.AN);
+
+                foreach (var listDictionary in currentListDicrionaries)
+                {
+                    constansFormulaElementary = listDictionary;
+
+                    for (var j = 0; j < Math.Pow(2, tempList.Count - constansFormulaElementary.Count); j++)
+                    {
+                        var dictionary = GenerateValues2(tempList.ToArray(), j, constansFormulaElementary);
+
+                        var factResult = true;
+                        foreach (var fact in decompositionFact.Facts)
+                        {
+                            factResult = factResult && CalculateFact(dictionary, fact);
+                        }
+                        if (factResult)
+                        {
+                            var dict = new Dictionary<int, bool>();
+
+                            foreach (var ap in decompositionFact.AP)
+                            {
+                                dict.Add(ap.Id, dictionary[ap.Id]);
+                            }
+                            if (!listDictionaries.Exists(x => x.SequenceEqual(dict)))
                                 listDictionaries.Add(dict);
                         }
                     }

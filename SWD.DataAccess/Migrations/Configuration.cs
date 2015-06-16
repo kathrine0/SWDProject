@@ -74,10 +74,10 @@
                 new Fact{ ExpressionString = "(!2)>(!25^!26)"},
                 new Fact{ ExpressionString = "!1>!26"},
                 
-                new Fact{ ExpressionString = "!(17^18^20^23)>!27"},
-                new Fact{ ExpressionString = "!19>!28"},
-                new Fact{ ExpressionString = "!(21^22^24)>!29"},
-                new Fact{ ExpressionString = "!(25^26)>!30"},
+                new Fact{ ExpressionString = "27>(17^18^20^23)"},
+                new Fact{ ExpressionString = "28>19"},
+                new Fact{ ExpressionString = "29>(21^22^24)"},
+                new Fact{ ExpressionString = "30>(25^26)"},
                 
 
                

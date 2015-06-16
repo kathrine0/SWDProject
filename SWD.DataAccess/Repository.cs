@@ -26,6 +26,16 @@ namespace SWD.DataAccess
             return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Exit).ToList();
         }
 
+        public List<FormulaElementary> GetFormulaElementariesEnter()
+        {
+            return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Enter).ToList();
+        }
+
+        public List<FormulaElementary> GetFormulaElementariesEnterAndExit()
+        {
+            return db.FormulaElementaries.Where(q => q.Type == FormulaElementaryType.Enter || q.Type == FormulaElementaryType.Exit).ToList();
+        }
+
         public List<FormulaElementary> GetFormulaElementariesByStringList(IEnumerable<string> formulas)
         {
             var listFormulas = formulas.Select(Int32.Parse);

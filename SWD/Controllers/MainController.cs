@@ -49,10 +49,12 @@ namespace SWD.Controllers
                     {11, false}
                 };
 
-               // dictionary = new Dictionary<int, bool>();
+                 dictionary = new Dictionary<int, bool>();
 
 
-                var result = Algoritm.RunWithDecomposition(facts, input, dictionary);
+                //var result = Algoritm.RunWithDecomposition(facts, input, dictionary);
+
+                var result = Algoritm.RunWithDecompositionsynthesis(facts, input, dictionary);
  
                 res = result;
             }

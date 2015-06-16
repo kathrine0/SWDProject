@@ -4,6 +4,7 @@ using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SWD.DataAccess.Model;
 using SWD.DataAccess.ViewModel;
 using SWD.Model;
 
@@ -67,6 +68,14 @@ namespace SWD.DataAccess.Helpers
                 RecommendedPlaces = repo.GetPositivePlaces(algoritmOutput),
                 NotRecommendedPlaces = repo.GetNegativePlaces(algoritmOutput)
             };
+        }
+
+        public List<string> CountriesForTrip(FormulaElementary exitFormulaElementary)
+        {
+            var repo = new Repository();
+            var input = new List<FormulaElementary> {exitFormulaElementary};
+            var decompositeFact = new DecompositionFact(input, repo.GetFacts().ToList(), new List<FormulaElementary>());
+            return decompositeFact.AN.Select(x => x.Value).ToList();
         }
 
         private Dictionary<int, bool> ParsePersonal(PersonalForm form)
